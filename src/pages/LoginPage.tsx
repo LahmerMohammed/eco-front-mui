@@ -8,18 +8,12 @@ interface Props {
 export function LoginPage(props: Props) {
 
 const {  } = props;
-const classes = useStyles();
 
-return (
-<div className={classes.root}>
-  <Typography>Login</Typography>
-</div>
+  return (
+    <div>
+      <Typography>Login</Typography>
+    </div>
 );
 }
 
-const useStyles = makeStyles({
-
-root: {
-
-},
-});
+const useStyles = makeStyles({});
