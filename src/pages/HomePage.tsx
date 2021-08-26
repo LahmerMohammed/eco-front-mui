@@ -3,6 +3,7 @@ import { Theme } from '@material-ui/core';
 import * as React from 'react';
 import { makeStyles  } from '@material-ui/styles';
 import {TopHeader} from '../components/TopHeader';
+import { Header } from '../components/Header';
 interface Props {
 
 }
@@ -14,6 +15,7 @@ const {  } = props;
 return (
   <div className="root">
     <TopHeader/>
+    <Header/>
   </div>
 );
 }
