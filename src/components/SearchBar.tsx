@@ -46,24 +46,36 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     display: 'flex',
     width: 'inherit',
     alignItems: 'center',
-    border: '1px solid gray',
-    borderRadius: '2rem'
+    border: '1px solid rgba(151, 142, 142, 0.5)',
+    borderRadius: '2rem',
+    '&:hover':{
+      borderColor: 'black'
+    },
+    '&:focus-within':{
+      border: '3px solid #d23f57'
+    },
   },
   select:{
     '& .css-1o2jng6-MuiOutlinedInput-notchedOutline ': {
-      border: '0.5px solid whitgray',
+      border: '0.5px solid rgba(210, 199, 199, 0.5)',
       borderRadius: '2rem',
       borderTopLeftRadius: '0',
       borderBottomLeftRadius: '0',
+      bottom: '-2px',
+      right: '-2px',
+      top: '-7px',
+      left: '0px',
     },
     backgroundColor: '#f6f9fc' ,
     minWidth: 150 ,
     textAlign:'center',
     '&.MuiOutlinedInput-root ':{
-    border: '0.5px solid gray',
     borderRadius: '2rem',
     borderTopLeftRadius: '0',
     borderBottomLeftRadius: '0',
+    },
+    '&.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'rgba(210, 199, 199, 0.5)'
     }
   }
 
