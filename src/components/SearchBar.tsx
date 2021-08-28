@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     '&:focus-within':{
       border: '3px solid #d23f57'
     },
+    
   },
   select:{
     '& .css-1o2jng6-MuiOutlinedInput-notchedOutline ': {
@@ -68,6 +69,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     },
     backgroundColor: '#f6f9fc' ,
     minWidth: 150 ,
+    width: 200,
     textAlign:'center',
     '&.MuiOutlinedInput-root ':{
     borderRadius: '2rem',
