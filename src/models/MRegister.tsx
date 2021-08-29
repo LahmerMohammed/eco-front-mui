@@ -1,7 +1,7 @@
 
 
 // prettier-ignore
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, Grid, IconButton, Input, InputAdornment, InputLabel, Modal, OutlinedInput, TextField, Theme, Typography } from '@material-ui/core';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, Grid, IconButton, Input, InputAdornment, InputLabel, Link, Modal, OutlinedInput, TextField, Theme, Typography } from '@material-ui/core';
 import { createStyles , makeStyles} from '@material-ui/styles';
 import * as React from 'react';
 import FacebookRoundedIcon from '@material-ui/icons/FacebookRounded';
@@ -61,23 +61,34 @@ export function MRegister(props: Props) {
       </DialogTitle>
       <DialogContent >
         <Box component="form" sx={{mt: '1rem'}}>
+          <InputLabel 
+            required
+            htmlFor="email"
+          >
+            Email or Phone Number
+          </InputLabel>
           <OutlinedInput
           required
           fullWidth
+          id="email"
           type="email"
           name="email"
-          label="Email or Phone Number"
           placeholder="example@mail.com"
           className={`${classes.itemMargin} ${classes.text}`}
         />
+        <InputLabel 
+          required
+          htmlFor="password"
+        >
+          Password
+        </InputLabel>
         <OutlinedInput
-          id="outlined-adornment-password"
+          id="password"
           required
           fullWidth
           name="password"
           type={showPassword ? 'text' : 'password'}
           autoComplete="current-password"
-          label="Password"
           className={`${classes.itemMargin} ${classes.text}`}
           endAdornment={<PasswordAdornment showPassword={showPassword} setShowPassword={setShowPassword}/>}
         />
@@ -116,7 +127,16 @@ export function MRegister(props: Props) {
         >
           Continue With Google
         </Button>
+
+        <Box component="div" className={classes.signup}>
+          <p>Don't have an Account?{" "}</p>
+          <Link color="#000" href="#">Signup</Link>
+        </Box>
       </DialogContent>
+      <Box component="div" className={`${classes.forgetPassword} ${classes.signup}`}>
+          <p>Forget your password?{" "}</p>
+          <Link color="#000" href="#">Reset</Link>
+      </Box>
     </Dialog>
 );
 }
@@ -149,5 +169,15 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root':{
       fontSize: '1.25rem !important',
     }
+  },
+  signup:{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '1.125rem'
+  },
+  forgetPassword:{
+    backgroundColor: '#f3f5f9',
+    height: '5rem'
   }
 }));
