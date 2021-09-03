@@ -13,11 +13,13 @@
 		"react-redux": "7.2.2",
 		"react-router-dom": "5.2.0",
 		"react-scripts": "3.4.1",
+		"react-slick": "^0.28.1",
 		"react-typesafe-routes": "^0.0.6",
 		"redux-devtools-extension": "2.13.8",
 		"redux-logger": "3.0.6",
 		"redux-persist": "6.0.0",
 		"redux-thunk": "2.3.0",
+		"slick-carousel": "^1.8.1",
 		"typescript": "4.1.2"
 	},
 	"scripts": {
@@ -33,18 +35,20 @@
 		"ie 11"
 	],
 	"devDependencies": {
-		"redux-devtools-extension": "2.13.8",
-		"eslint": "6.8.0",
-		"eslint-config-prettier": "^6.10.1",
-		"eslint-plugin-prettier": "^3.1.2",
+		"@types/jest": "24.0.25",
 		"@types/node": "12.12.18",
 		"@types/react": "17.0.0 ",
 		"@types/react-dom": "17.0.0",
+		"@types/react-redux": "7.1.11",
 		"@types/react-router-dom": "5.1.6",
+		"@types/react-slick": "^0.23.5",
 		"@types/redux-logger": "3.0.8",
 		"@types/webpack-env": "1.16.0",
-		"rimraf": "3.0.2",
-		"@types/react-redux": "7.1.11",
-		"@types/jest": "24.0.25"
+		"eslint": "6.8.0",
+		"eslint-config-prettier": "^6.10.1",
+		"eslint-plugin-prettier": "^3.1.2",
+		"prettier": "2.3.2",
+		"redux-devtools-extension": "2.13.8",
+		"rimraf": "3.0.2"
 	}
 }
