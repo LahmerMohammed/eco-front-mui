@@ -58,6 +58,7 @@ const useStyles = makeStyles( (theme: Theme) => createStyles({
   },
   container:{
     justifyContent: 'space-between',
+    maxWidth: '1900px'
   },
   link: {
     color: '#2B3445 !important',

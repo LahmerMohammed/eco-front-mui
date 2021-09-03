@@ -71,7 +71,8 @@ const useStyles = makeStyles((theme: Theme )=> createStyles({
     height:'40px',
     backgroundColor: '#0f3460',
     display: 'flex',
-    color:'white !important'
+    color:'white !important',
+    justifyContent: 'center'
   },
   container:{
     display: 'flex !important',
@@ -79,6 +80,7 @@ const useStyles = makeStyles((theme: Theme )=> createStyles({
     [theme.breakpoints.down('md')]: {
       justifyContent: 'flex-end'
     },
+    maxWidth:'1900px',
   },
   topLeftBar: {
     display: 'flex',

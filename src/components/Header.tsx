@@ -52,7 +52,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     height: '80px',
     margin: '0 auto',
     width: '100%',
-
   },
   container:{
     height: 'inherit',
@@ -60,6 +59,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     [theme.breakpoints.down('md')]: {
       width:'100%',
     },
+    maxWidth: '1920px'
   },
   logo:{
     justifyContent: 'center',
