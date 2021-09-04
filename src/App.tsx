@@ -4,6 +4,7 @@ import { createStyles, makeStyles } from "@material-ui/styles";
 import * as React from "react";
 import { Router } from "react-router-dom";
 import { RouterSwitch } from 'react-typesafe-routes';
+import { LoginPage } from "./pages";
 import { HomePage } from "./pages/HomePage";
 import { router } from "./Router";
 
@@ -11,9 +12,9 @@ function App() {
 	const classes = useStyles();
 
 	return (
-			<div className={classes.root}>
-				<HomePage/>
-			</div>
+		<div className={classes.root}>
+			<LoginPage />
+		</div>
 	);
 }
 
