@@ -1,6 +1,6 @@
 // prettier-ignore
-import { Grid, IconButton, Link, MenuItem, Select, Stack, Theme , Paper} from '@mui/material';
-import {makeStyles, createStyles } from '@mui/styles';
+import { Grid, IconButton, Link, MenuItem, Select, Stack, Theme, Paper } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles';
 import { CSSProperties } from '@mui/system';
 import * as React from 'react';
 
@@ -12,25 +12,25 @@ interface Props {
 
 export function NavBar(props: Props) {
 
-const {  } = props;
-const classes = useStyles();
+  const { } = props;
+  const classes = useStyles();
 
-const onChange = () => {}
+  const onChange = () => { }
 
-const categories = ['Categories',"Fashion","Electronics","Bikes","Home & Garden","Gifts","Music","Health & Beauty","Pets"];
+  const categories = ['Categories', "Fashion", "Electronics", "Bikes", "Home & Garden", "Gifts", "Music", "Health & Beauty", "Pets"];
   return (
     <div className={classes.root}>
-      <Grid style={{width: '80%'}} container  className={classes.container}>
+      <Grid style={{ width: '80%' }} container className={classes.container}>
         <Grid item xs={2}>
-          <Select defaultValue={'Categories'} onChange={onChange} variant="standard">
-            {categories.map((item) => <MenuItem value={item}>{item}</MenuItem>)}   
+          <Select defaultValue={'Categories'} onChange={onChange}>
+            {categories.map((item) => <MenuItem value={item}>{item}</MenuItem>)}
           </Select>
         </Grid>
         <Grid container alignItems="center" justifyContent="flex-end" xs={5}>
-          <Stack direction="row"  spacing={3}>
-            <Link  className={classes.link}  >Home</Link>
-            <Link  className={classes.link} >Contact</Link>
-            <Link  className={classes.link}>About</Link>
+          <Stack direction="row" spacing={3}>
+            <Link className={classes.link}  >Home</Link>
+            <Link className={classes.link} >Contact</Link>
+            <Link className={classes.link}>About</Link>
           </Stack>
         </Grid>
       </Grid>
@@ -42,18 +42,23 @@ const categories = ['Categories',"Fashion","Electronics","Bikes","Home & Garden"
 const style = {
   link: {
     textDecoration: 'none'
-  }as CSSProperties,
+  } as CSSProperties,
 }
 
-const useStyles = makeStyles( (theme: Theme) => createStyles({
+const useStyles = makeStyles((theme: Theme) => createStyles({
 
   root: {
     width: 'inherit',
+    height: '4rem',
     display: 'flex',
     justifyContent: 'center',
-    boxShadow: '0px 10px 16px rgba(43, 52, 69, 0.1) !important'
+    alignItems: 'center',
+    boxShadow: 'rgba(43, 52, 69, 0.1) 0px 4px 16px !important',
+    backgroundColor: 'white',
+    position: 'relative',
+    zIndex: 1,
   },
-  container:{
+  container: {
     justifyContent: 'space-between',
     maxWidth: '1900px'
   },
@@ -64,6 +69,6 @@ const useStyles = makeStyles( (theme: Theme) => createStyles({
     },
     cursor: 'pointer',
     textDecoration: 'none !important',
-    
+
   }
 }));

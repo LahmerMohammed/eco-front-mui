@@ -1,6 +1,6 @@
 // prettier-ignore
-import {  Box, FormControlLabel, Paper, Switch, Theme } from '@mui/material';
-import { createStyles , makeStyles } from '@mui/styles';
+import { Box, FormControlLabel, Paper, Switch, Theme } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import Grow from '@mui/material/Grow';
 import Slide from '@mui/material/Slide';
 import * as React from 'react';
@@ -18,8 +18,8 @@ const settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 5000  
-}; 
+  autoplaySpeed: 5000
+};
 
 interface Props {
 
@@ -38,27 +38,28 @@ export function MainProductSlide(props: Props) {
   };
 
   return (
-      <Box className={classes.root} >
-        <Box component="div" className={classes.container}>
-            <Slider {...settings}>
-              <MainProduct /> 
-              <MainProduct /> 
-            </Slider>         
-        </Box>
+    <Box className={classes.root} >
+      <Box component="div" className={classes.container}>
+        <Slider {...settings}>
+          <MainProduct />
+          <MainProduct />
+        </Slider>
       </Box>
+    </Box>
   );
 }
 
-const useStyles = makeStyles( (theme :Theme) => createStyles({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     display: 'flex',
     justifyContent: 'center',
     marginBottom: '4rem',
-    marginTop: '4rem',
-
+    backgroundColor: 'white',
+    position: 'relative',
+    zIndex: 0
   },
   container: {
-    [theme.breakpoints.up('lg')]:{
+    [theme.breakpoints.up('lg')]: {
       width: '60%'
     },
     width: '90%',
