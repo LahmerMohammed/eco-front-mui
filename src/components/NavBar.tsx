@@ -21,7 +21,7 @@ export function NavBar(props: Props) {
   return (
     <div className={classes.root}>
       <Grid style={{ width: '80%' }} container className={classes.container}>
-        <Grid item xs={2}>
+        <Grid item xs={2} style={{ textAlign: 'end' }}>
           <Select defaultValue={'Categories'} onChange={onChange}>
             {categories.map((item) => <MenuItem value={item}>{item}</MenuItem>)}
           </Select>
@@ -53,10 +53,11 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    boxShadow: 'rgba(43, 52, 69, 0.1) 0px 4px 16px !important',
+    boxShadow: 'rgba(43, 52, 69, 0.1) 0px 15px 16px !important',
     backgroundColor: 'white',
     position: 'relative',
     zIndex: 1,
+    paddingBottom: '.5rem'
   },
   container: {
     justifyContent: 'space-between',
