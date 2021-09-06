@@ -24,10 +24,6 @@ export function HomePage(props: Props) {
 
   return (
     <div className={classes.root}>
-      <TopHeader />
-      <Header setOpen={setOpen} />
-      <NavBar />
-      <MRegister open={open} setOpen={setOpen} />
       <MainProductSlide />
       <FlashDeals />
       <BottomAppBar />
