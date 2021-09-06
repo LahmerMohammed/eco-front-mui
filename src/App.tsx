@@ -25,7 +25,7 @@ function App() {
 			<Header setOpen={setOpen} />
 			<NavBar />
 			<MRegister open={open} setOpen={setOpen} />
-			<HomePage />
+			<UserPage />
 		</div>
 	);
 }
