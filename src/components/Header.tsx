@@ -54,7 +54,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     width: '100%',
     backgroundColor: 'white',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingTop: '.5rem',
+    paddingBottom: '.5rem'
   },
   container: {
     height: 'inherit',
