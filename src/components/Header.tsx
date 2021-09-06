@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     height: '80px',
     margin: '0 auto',
     width: '100%',
+    backgroundColor: 'white',
+    display: 'flex',
+    justifyContent: 'center'
   },
   container: {
     height: 'inherit',
