@@ -1,12 +1,12 @@
 // prettier-ignore
-import { Container,Link, Theme, Typography } from '@material-ui/core';
-import Select from '@material-ui/core/Select';
+import { Container,Link, Theme, Typography } from '@mui/material';
+import Select from '@mui/material/Select';
 import * as React from 'react';
-import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
-import MailIcon from '@material-ui/icons/Mail';
-import MenuItem from '@material-ui/core/MenuItem';
-import Input from '@material-ui/core/Input';
-import { makeStyles , createStyles} from '@material-ui/styles';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import MailIcon from '@mui/icons-material/Mail';
+import MenuItem from '@mui/material/MenuItem';
+import Input from '@mui/material/Input';
+import { makeStyles , createStyles} from '@mui/styles';
 
 interface Props {
 
@@ -23,13 +23,13 @@ const MSelect = (props: SelectProps) => {
 
   return (
     <Select
-          defaultValue={options[0]}  
-          input={<Input disableUnderline={true}/>}
-          style={{color: 'white'}}
-          >
+      defaultValue={options[0]}
+      input={<Input disableUnderline={true}/>}
+      style={{color: 'white'}}
+      variant="standard">
            {options.map((option) => <MenuItem value={option}>{option}</MenuItem>)} 
     </Select>
-  )
+  );
 }
 
 
@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme: Theme )=> createStyles({
   container:{
     display: 'flex !important',
     justifyContent:'space-between',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       justifyContent: 'flex-end'
     },
     maxWidth:'1900px',
@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme: Theme )=> createStyles({
   group:{
     display: 'flex',
     marginRight: '2rem !important',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       display: 'none'
     },
   }

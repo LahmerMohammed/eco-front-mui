@@ -1,7 +1,7 @@
 // prettier-ignore
-import { Grid, IconButton, Link, MenuItem, Select, Stack, Theme , Paper} from '@material-ui/core';
-import {makeStyles, createStyles } from '@material-ui/styles';
-import { CSSProperties } from '@material-ui/system';
+import { Grid, IconButton, Link, MenuItem, Select, Stack, Theme , Paper} from '@mui/material';
+import {makeStyles, createStyles } from '@mui/styles';
+import { CSSProperties } from '@mui/system';
 import * as React from 'react';
 
 interface Props {
@@ -22,10 +22,7 @@ const categories = ['Categories',"Fashion","Electronics","Bikes","Home & Garden"
     <div className={classes.root}>
       <Grid style={{width: '80%'}} container  className={classes.container}>
         <Grid item xs={2}>
-          <Select
-          defaultValue={'Categories'}
-          onChange={onChange}
-          >
+          <Select defaultValue={'Categories'} onChange={onChange} variant="standard">
             {categories.map((item) => <MenuItem value={item}>{item}</MenuItem>)}   
           </Select>
         </Grid>
@@ -38,7 +35,7 @@ const categories = ['Categories',"Fashion","Electronics","Bikes","Home & Garden"
         </Grid>
       </Grid>
     </div>
-);
+  );
 }
 
 

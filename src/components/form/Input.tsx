@@ -1,16 +1,17 @@
 // prettier-ignore
-import { InputLabel, OutlinedInput, Theme } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { InputLabel, OutlinedInput, OutlinedInputProps, Theme } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
 
 interface InputProps {
   name: string,
   type: string,
-  placeholder: string,
+  placeholder?: string,
+  label?: string,
 }
 
 
-export function Input(props: InputProps) {
+export function Input(props: InputProps & OutlinedInputProps) {
 
   const { } = props;
   const classes = useStyles();
@@ -19,9 +20,9 @@ export function Input(props: InputProps) {
     <>
       <InputLabel
         required
-        htmlFor={props.name}
+        htmlFor={props.label}
       >
-        Email or Phone Number
+        {props.label}
       </InputLabel>
       <OutlinedInput
         required

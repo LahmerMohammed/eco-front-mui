@@ -1,8 +1,8 @@
 // prettier-ignore
-import {  Box, FormControlLabel, Paper, Switch, Theme } from '@material-ui/core';
-import { createStyles , makeStyles } from '@material-ui/styles';
-import Grow from '@material-ui/core/Grow';
-import Slide from '@material-ui/core/Slide';
+import {  Box, FormControlLabel, Paper, Switch, Theme } from '@mui/material';
+import { createStyles , makeStyles } from '@mui/styles';
+import Grow from '@mui/material/Grow';
+import Slide from '@mui/material/Slide';
 import * as React from 'react';
 import { useRef, useState } from 'react';
 import { MainProduct } from './MainProduct';

@@ -1,6 +1,6 @@
 // prettier-ignore
-import {  Box, Button, Grid, Theme, Typography } from '@material-ui/core';
-import { createStyles , makeStyles} from '@material-ui/styles';
+import {  Box, Button, Grid, Theme, Typography } from '@mui/material';
+import { createStyles , makeStyles} from '@mui/styles';
 import * as React from 'react';
 
 interface Props {
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     justifyContent: 'space-between',
   },
   title:{
-    [theme.breakpoints.down('md')]:{
+    [theme.breakpoints.down('lg')]:{
       fontSize: '40px !important'
     }
   },

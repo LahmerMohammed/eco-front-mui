@@ -1,9 +1,9 @@
 // prettier-ignore
-import { Button, ButtonProps, Theme } from '@material-ui/core';
-import { createStyles, makeStyles, styled } from '@material-ui/styles';
+import { Button, ButtonProps, Theme } from '@mui/material';
+import { createStyles, makeStyles, styled } from '@mui/styles';
 import * as React from 'react';
-import FacebookRoundedIcon from '@material-ui/icons/FacebookRounded';
-import GoogleIcon from '@material-ui/icons/Google';
+import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
+import GoogleIcon from '@mui/icons-material/Google';
 
 const FormButton = styled(Button)<ButtonProps>(({ theme: Theme }) => ({
   color: 'white',

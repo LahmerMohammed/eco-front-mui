@@ -1,6 +1,6 @@
 // prettier-ignore
-import { Card, Chip, Grid, Paper, Theme, Typography , Rating, Link } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { Card, Chip, Grid, Paper, Theme, Typography , Rating, Link } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
 
 export interface ProductProps {

@@ -1,10 +1,10 @@
 
 
 // prettier-ignore
-import {  Box, Button, Grid, Input, Menu, MenuItem, Select, TextField, TextFieldProps, Theme } from '@material-ui/core';
-import { makeStyles , createStyles, styled } from '@material-ui/styles';
+import {  Box, Button, Grid, Input, Menu, MenuItem, Select, TextField, TextFieldProps, Theme } from '@mui/material';
+import { makeStyles , createStyles, styled } from '@mui/styles';
 import * as React from 'react';
-import Search from '@material-ui/icons/Search';
+import Search from '@mui/icons-material/Search';
 
 interface Props {
 
@@ -26,16 +26,16 @@ export function SearchBar(props: Props) {
   const categories = ['All Categories','Car','Clothes','Eloctronis','Laptop','Desktop','Camera','Toys'];
 
   return (
-      <div  className={classes.container}>
-        <Search style={{marginLeft:'.5rem'}} fontSize="large" />
-        <SearchField placeholder='Search for ...' fullWidth />
-        <Select
+    <div  className={classes.container}>
+      <Search style={{marginLeft:'.5rem'}} fontSize="large" />
+      <SearchField placeholder='Search for ...' fullWidth />
+      <Select
         defaultValue={categories[0]}
         className={classes.select}
-        >
-          {categories.map((category) => <MenuItem value={category} >{category}</MenuItem>)}
-        </Select>
-      </div>
+        variant="standard">
+        {categories.map((category) => <MenuItem value={category} >{category}</MenuItem>)}
+      </Select>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
-import { Box, Container, Divider, Link, Paper, Theme, Typography } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { Box, Container, Divider, Link, Paper, Theme, Typography } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
 import { ActionButton, FacebookButton, GoogleButton } from '../components/form/FormButton';
 import { Input } from '../components/form/Input';
@@ -18,10 +18,23 @@ export function LoginPage(props: Props) {
 
   return (
     <Box className={classes.root} >
-      <Paper elevation={3} className={classes.container}>
+      <Paper className={classes.container}>
+        <Box className={classes.title}>
+          <Typography variant="h4" fontSize="2rem">
+            Welcome to Ecommerce
+          </Typography>
+          <Typography style={{ paddingTop: '1rem', color: 'gray' }}>
+            Login with email & password
+          </Typography>
+        </Box>
         <Box component="form">
 
-          <Input name="Email" type="email" placeholder="example@gmail.com" />
+          <Input
+            name="Email"
+            type="email"
+            placeholder="example@gmail.com"
+            label="Email or Phone Number"
+          />
           <InputPassword />
           <ActionButton
             style={{ backgroundColor: '#d23f57' }}
@@ -51,14 +64,25 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#f6f9fc',
+    width: '100vw',
+    height: '100vh'
   },
   container: {
     padding: '2rem',
+    borderRadius: '20px !important',
+    boxShadow: '0px 8px 45px rgba(3, 0, 71, 0.09)'
   },
   signup: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  title: {
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'center',
+    marginBottom: '3rem',
   }
 }));

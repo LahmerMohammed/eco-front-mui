@@ -1,8 +1,8 @@
 
 
 // prettier-ignore
-import { Box, Button, Dialog, DialogContent, DialogTitle, Divider, Link, Theme, Typography } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { Box, Button, Dialog, DialogContent, DialogTitle, Divider, Link, Theme, Typography } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
 import { Input } from '../components/form/Input'
 import { InputPassword } from '../components/form/InputPassword'
@@ -42,7 +42,12 @@ export function MRegister(props: Props) {
 
         <Box component="form" sx={{ mt: '1rem' }}>
 
-          <Input name="Email" type="email" placeholder="example@gmail.com" />
+          <Input
+            name="Email"
+            type="email"
+            placeholder="example@gmail.com"
+            label="Email or Phone Number"
+          />
           <InputPassword />
           <ActionButton
             style={{ backgroundColor: '#d23f57' }}

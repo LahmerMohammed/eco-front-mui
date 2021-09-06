@@ -1,11 +1,12 @@
 // prettier-ignore
-import { IconButton, InputAdornment, InputLabel, OutlinedInput, Theme } from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { IconButton, InputAdornment, InputLabel, OutlinedInput, Theme } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
 
 interface Props {
-
+  name?: string,
+  label?: string,
 }
 
 interface AdornmentProps {
@@ -31,11 +32,11 @@ function PasswordAdornment(props: AdornmentProps) {
         onClick={handleClickShowPassword}
         onMouseDown={handleMouseDownPassword}
         edge="end"
-      >
+        size="large">
         {props.showPassword ? <Visibility /> : <VisibilityOff />}
       </IconButton>
     </InputAdornment>
-  )
+  );
 }
 
 export function InputPassword(props: Props) {
@@ -49,17 +50,16 @@ export function InputPassword(props: Props) {
     <>
       <InputLabel
         required
-        htmlFor="password"
+        htmlFor={props.name ? props.name : "password"}
       >
-        Password
+        {props.label ? props.label : "Password"}
       </InputLabel>
       <OutlinedInput
-        id="password"
+        id={props.name ? props.name : "password"}
         required
         fullWidth
-        name="password"
+        name={props.name ? props.name : "password"}
         type={showPassword ? 'text' : 'password'}
-        autoComplete="current-password"
         className={`${classes.itemMargin} ${classes.text}`}
         endAdornment={<PasswordAdornment showPassword={showPassword} setShowPassword={setShowPassword} />}
       />

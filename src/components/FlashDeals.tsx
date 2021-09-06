@@ -1,6 +1,6 @@
 // prettier-ignore
-import {  Container, Grid, Theme, Typography } from '@material-ui/core';
-import {createStyles, makeStyles} from '@material-ui/styles'
+import {  Container, Grid, Theme, Typography } from '@mui/material';
+import {createStyles, makeStyles} from '@mui/styles'
 import * as React from 'react';
 import { ProductCard, ProductProps } from './ProductCard';
 import Slider from 'react-slick';
@@ -8,7 +8,7 @@ import Slider from 'react-slick';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box } from '@material-ui/system';
+import { Box } from '@mui/system';
 import { ElectricityIcon } from '../icons/ElectricityIcon';
 
 

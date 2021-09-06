@@ -1,10 +1,10 @@
 // prettier-ignore
-import {  AppBar, Button, IconButton, Theme, Toolbar } from '@material-ui/core';
-import { createStyles , makeStyles } from '@material-ui/styles';
+import {  AppBar, Button, IconButton, Theme, Toolbar } from '@mui/material';
+import { createStyles , makeStyles } from '@mui/styles';
 import * as React from 'react';
-import HomeIcon from '@material-ui/icons/Home';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import HomeIcon from '@mui/icons-material/Home';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 interface Props {
 
 }
