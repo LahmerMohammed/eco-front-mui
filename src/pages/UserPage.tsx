@@ -1,5 +1,5 @@
 // prettier-ignore
-import { Box, Grid, Theme } from '@mui/material';
+import { Box, Container, Grid, Theme } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
 import { UserMenu } from '../components/UserMenu';
@@ -28,8 +28,10 @@ export function UserPage(props: Props) {
     <Router>
       <Box style={style.root}>
         <Grid container style={style.container}>
-          <Grid item md={12} lg={2} >
-            <UserMenu />
+          <Grid item container md={12} lg={3} justifyContent="flex-end" >
+            <Grid item md={12} xl={8}>
+              <UserMenu />
+            </Grid>
           </Grid>
           <Grid item xs={12} lg={7}>
             <Switch>
@@ -51,7 +53,6 @@ const style = {
     color: '#959dae',
     display: 'flex',
     flexDirection: 'column',
-    width: '300px',
   } as React.CSSProperties,
   section: {
     flexDirection: 'column',
@@ -59,13 +60,15 @@ const style = {
 
   } as React.CSSProperties,
   container: {
-    padding: '2rem',
-    wrap: "wrap",
-    rowGap: '2rem'
+    padding: '5rem',
+    rowGap: '2rem',
+    justifyContent: 'space-evenly'
   } as React.CSSProperties,
   root: {
     width: '100vw',
     backgroundColor: 'inherit',
+    display: 'flex',
+    justifyContent: 'center'
   } as React.CSSProperties,
 }
 
