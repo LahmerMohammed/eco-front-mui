@@ -2,6 +2,7 @@
 import { Button, ButtonProps, Grid, Pagination, PaginationProps, styled, Theme, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 interface Props {
   icon: React.ReactNode,
@@ -11,6 +12,7 @@ interface Props {
   children: any,
   style?: React.CSSProperties,
   onClick?: React.MouseEventHandler
+  to?: string,
 }
 
 
@@ -37,7 +39,7 @@ export function Section(props: Props) {
         </Grid>
         <Grid item xs={12} sm={4}>
           {
-            (props.button) ? <RedButton onClick={props.onClick} fullWidth size="large" variant="contained"> {props.button} </RedButton> : null
+            (props.button) ? (props.to) ? <Link to={props.to}><RedButton onClick={props.onClick} fullWidth size="large" variant="contained"> {props.button} </RedButton></Link> : <RedButton onClick={props.onClick} fullWidth size="large" variant="contained"> {props.button} </RedButton> : null
           }
         </Grid>
       </Grid>
