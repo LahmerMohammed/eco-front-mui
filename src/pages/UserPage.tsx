@@ -5,6 +5,7 @@ import * as React from 'react';
 import { UserMenu } from '../components/UserMenu';
 import { UserProfile } from '../components/UserProfile';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { UserAddress } from '../components/user/UserAddress';
 
 
 interface Props {
@@ -27,7 +28,7 @@ export function UserPage(props: Props) {
   return (
     <Router>
       <Box style={style.root}>
-        <Grid container style={style.container}>
+        <Grid container className={classes.container}>
           <Grid item container md={12} lg={3} justifyContent="flex-end" >
             <Grid item md={12} xl={8}>
               <UserMenu />
@@ -35,7 +36,10 @@ export function UserPage(props: Props) {
           </Grid>
           <Grid item xs={12} lg={7}>
             <Switch>
-              <Route exact path="/profile" component={UserProfile} />
+              <Route exact path="/profile" >
+                <UserProfile {...user} />
+              </Route>
+              <Route exact path="/address" component={UserAddress} />
             </Switch>
           </Grid>
         </Grid>
@@ -59,13 +63,7 @@ const style = {
     rowGap: '0.5rem'
 
   } as React.CSSProperties,
-  container: {
-    padding: '5rem',
-    rowGap: '2rem',
-    justifyContent: 'space-evenly'
-  } as React.CSSProperties,
   root: {
-    width: '100vw',
     backgroundColor: 'inherit',
     display: 'flex',
     justifyContent: 'center'
@@ -74,7 +72,12 @@ const style = {
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
 
-  root: {
-
+  container: {
+    padding: '5rem',
+    rowGap: '2rem',
+    justifyContent: 'space-evenly',
+    [theme.breakpoints.down('md')]: {
+      padding: '2rem'
+    }
   }
 }));
