@@ -6,8 +6,8 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import * as React from 'react';
-import { Input } from './form/Input';
-import { Section } from './user/Section';
+import { Input } from '../form/Input';
+import { Section } from './Section';
 
 
 interface UserProfileProps {

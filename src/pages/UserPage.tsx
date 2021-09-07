@@ -2,8 +2,8 @@
 import { Box, Container, Grid, Theme } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
-import { UserMenu } from '../components/UserMenu';
-import { UserProfile } from '../components/UserProfile';
+import { UserMenu } from '../components/user/UserMenu';
+import { UserProfile } from '../components/user/UserProfile';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { UserAddress } from '../components/user/UserAddress';
 
