@@ -21,10 +21,10 @@ function App() {
 
 	return (
 		<div className={classes.root}>
-			<TopHeader />
+			{/* <TopHeader />
 			<Header setOpen={setOpen} />
 			<NavBar />
-			<MRegister open={open} setOpen={setOpen} />
+			<MRegister open={open} setOpen={setOpen} /> */}
 			<UserPage />
 		</div>
 	);
