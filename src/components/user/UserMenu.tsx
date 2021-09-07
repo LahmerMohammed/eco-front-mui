@@ -8,7 +8,7 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PaymentIcon from '@mui/icons-material/Payment';
 
-import { UserDashboardItem } from '../components/UserDashboardItem';
+import { UserDashboardItem } from './UserDashboardItem';
 
 
 interface Props {
