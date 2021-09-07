@@ -12,11 +12,19 @@ declare module '@mui/styles/defaultTheme' {
 }
 
 
-const theme = createTheme();
+const theme = createTheme({
+  typography: {
+    fontSize: 15
+  }
+});
 
 
 const rootEl = document.getElementById("root");
-ReactDOM.render(<StyledEngineProvider injectFirst>
-  <ThemeProvider theme={theme}><App /></ThemeProvider>
-</StyledEngineProvider>, rootEl);
+ReactDOM.render(
+  <StyledEngineProvider injectFirst>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  </StyledEngineProvider>,
+  rootEl);
 
