@@ -6,6 +6,9 @@ import { UserMenu } from '../components/user/UserMenu';
 import { UserProfile } from '../components/user/UserProfile';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { UserAddress } from '../components/user/UserAddress';
+import { PaymentMethods } from '../components/user/PaymentMethods';
+import { NewAddress } from '../components/user/NewAddress'
+import { NewPaymentMethode } from '../components/user/NewPaymentMethode';
 
 
 interface Props {
@@ -40,6 +43,9 @@ export function UserPage(props: Props) {
                 <UserProfile {...user} />
               </Route>
               <Route exact path="/address" component={UserAddress} />
+              <Route exact path="/address/add" component={NewAddress} />
+              <Route exact path="/payment-methods" component={PaymentMethods} />
+              <Route exact path="/payment-methods/add" component={NewPaymentMethode} />
             </Switch>
           </Grid>
         </Grid>
