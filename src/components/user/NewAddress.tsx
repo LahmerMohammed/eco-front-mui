@@ -8,7 +8,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 
 
-export function UserProfile() {
+export function NewAddress() {
 
   const classes = useStyles();
 
@@ -41,6 +41,7 @@ export function UserProfile() {
       button="Back to Address"
       style={style.paperWrapper}
       onClick={handleBackButton}
+      to="/address"
     >
       <Paper style={style.paper}>
         <Grid container wrap="wrap" style={style.form} rowGap="3rem">
