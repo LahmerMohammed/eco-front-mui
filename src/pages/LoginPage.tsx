@@ -1,10 +1,11 @@
-import { Box, Container, Divider, Link, Paper, Theme, Typography } from '@mui/material';
+import { Backdrop, Box, CircularProgress, Container, Divider, Link, Paper, Theme, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
 import { ActionButton, FacebookButton, GoogleButton } from '../components/form/FormButton';
 import { Input } from '../components/form/Input';
 import { InputPassword } from '../components/form/InputPassword';
 import { ForgetPassword } from '../models/MRegister';
+import { userService } from '../services/userService';
 
 interface Props {
 
@@ -15,6 +16,37 @@ export function LoginPage(props: Props) {
   const { } = props;
 
   const classes = useStyles();
+
+
+  const [form, setForm] = React.useState({
+    email: "",
+    password: "",
+  });
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+
+    const { name, value } = evt.target;
+
+    setForm({
+      ...form,
+      [name]: value
+    })
+  }
+
+  const handleClose = async () => {
+
+    const response = await userService.login(form);
+    console.log(response);
+    setOpen(false);
+
+  }
+
+  const handleLogin = () => {
+    setOpen(true);
+    console.log(" logging ...");
+  }
 
   return (
     <Box className={classes.root} >
@@ -31,15 +63,19 @@ export function LoginPage(props: Props) {
 
           <Input
             name="Email"
-            type="email"
+            type={"email"}
             placeholder="example@gmail.com"
-            label="Email or Phone Number"
+            label="Email"
+            value={form.email}
+            onChange={handleInputChange}
           />
-          <InputPassword />
+          <InputPassword
+            value={form.password}
+            onChange={handleInputChange}
+          />
           <ActionButton
             style={{ backgroundColor: '#d23f57' }}
-            type="submit"
-
+            onClick={handleLogin}
           >
             Login
           </ActionButton>
@@ -48,13 +84,14 @@ export function LoginPage(props: Props) {
         >
           on
         </Divider>
-        <FacebookButton />
-        <GoogleButton />
+        <FacebookButton onClick={() => { }} />
+        <GoogleButton onClick={() => { }} />
         <Box component="div" className={classes.signup}>
           <p>Don't have an Account?{" "}</p>
           <Link color="#000" href="#">Signup</Link>
         </Box>
         <ForgetPassword />
+
       </Paper>
     </Box>
   );
