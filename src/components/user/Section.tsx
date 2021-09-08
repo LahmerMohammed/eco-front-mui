@@ -13,6 +13,7 @@ interface Props {
   style?: React.CSSProperties,
   onClick?: React.MouseEventHandler
   to?: string,
+  buttonStyle?: React.CSSProperties,
 }
 
 
@@ -39,7 +40,7 @@ export function Section(props: Props) {
         </Grid>
         <Grid item xs={12} sm={4}>
           {
-            (props.button) ? (props.to) ? <Link to={props.to}><RedButton onClick={props.onClick} fullWidth size="large" variant="contained"> {props.button} </RedButton></Link> : <RedButton onClick={props.onClick} fullWidth size="large" variant="contained"> {props.button} </RedButton> : null
+            (props.button) ? (props.to) ? <Link to={props.to}><RedButton style={props.buttonStyle} onClick={props.onClick} fullWidth size="large" variant="contained"> {props.button} </RedButton></Link> : <RedButton style={props.buttonStyle} onClick={props.onClick} fullWidth size="large" variant="contained"> {props.button} </RedButton> : null
           }
         </Grid>
       </Grid>
