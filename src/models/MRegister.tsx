@@ -32,6 +32,8 @@ export function MRegister(props: Props) {
   const { open, setOpen } = props;
   const classes = useStyles();
 
+  const handleRegister = () => { }
+
   return (
     <Dialog open={open} onClose={() => setOpen(false)}>
       <DialogTitle style={{ textAlign: 'center' }}>
@@ -51,19 +53,18 @@ export function MRegister(props: Props) {
           <InputPassword />
           <ActionButton
             style={{ backgroundColor: '#d23f57' }}
-            type="submit"
 
+            onClick={handleRegister}
           >
-            Login
+            Signup
           </ActionButton>
         </Box>
         <Divider
-          style={{}}
         >
           on
         </Divider>
-        <FacebookButton />
-        <GoogleButton />
+        <FacebookButton onClick={() => { }} />
+        <GoogleButton onClick={() => { }} />
         <Box component="div" className={classes.signup}>
           <p>Don't have an Account?{" "}</p>
           <Link color="#000" href="#">Signup</Link>
