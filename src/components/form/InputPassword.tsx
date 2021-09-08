@@ -1,13 +1,8 @@
 // prettier-ignore
-import { IconButton, InputAdornment, InputLabel, OutlinedInput, Theme } from '@mui/material';
+import { IconButton, InputAdornment, InputLabel, OutlinedInput, OutlinedInputProps, Theme } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
-
-interface Props {
-  name?: string,
-  label?: string,
-}
 
 interface AdornmentProps {
   setShowPassword: React.Dispatch<React.SetStateAction<boolean>>,
@@ -39,7 +34,7 @@ function PasswordAdornment(props: AdornmentProps) {
   );
 }
 
-export function InputPassword(props: Props) {
+export function InputPassword(props: OutlinedInputProps) {
 
   const { } = props;
   const classes = useStyles();
@@ -62,6 +57,7 @@ export function InputPassword(props: Props) {
         type={showPassword ? 'text' : 'password'}
         className={`${classes.itemMargin} ${classes.text}`}
         endAdornment={<PasswordAdornment showPassword={showPassword} setShowPassword={setShowPassword} />}
+        {...props}
       />
     </>
   );
