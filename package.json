@@ -8,6 +8,7 @@
 		"@mui/lab": "^5.0.0-alpha.45",
 		"@mui/material": "^5.0.0-rc.0",
 		"@mui/styles": "^5.0.0-rc.0",
+		"axios": "^0.21.4",
 		"date-fns": "^2.23.0",
 		"localforage": "1.7.3",
 		"react": "17.0.1",
