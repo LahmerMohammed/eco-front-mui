@@ -10,6 +10,7 @@ import { PaymentMethods } from '../components/user/PaymentMethods';
 import { NewAddress } from '../components/user/NewAddress'
 import { NewPaymentMethode } from '../components/user/NewPaymentMethode';
 import { UserOrder } from '../components/user/UserOrder';
+import { UserWhishlist } from '../components/user/UserWhishlist';
 
 
 interface Props {
@@ -45,6 +46,7 @@ export function UserPage(props: Props) {
               </Route>
               <Route exact path="/orders" component={UserOrder} />
               <Route exact path="/address" component={UserAddress} />
+              <Route exact path="/whishlist" component={UserWhishlist} />
               <Route exact path="/payment-methods" component={PaymentMethods} />
               <Route exact path="/address/add" component={NewAddress} />
               <Route exact path="/payment-methods/add" component={NewPaymentMethode} />
