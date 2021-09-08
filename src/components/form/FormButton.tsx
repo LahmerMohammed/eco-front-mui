@@ -15,25 +15,38 @@ const FormButton = styled(Button)<ButtonProps>(({ theme: Theme }) => ({
 }));
 
 
-export const ActionButton = (props: any) => {
+interface ActionProps {
+  onClick: React.MouseEventHandler<HTMLButtonElement>,
+  children: any,
+  startIcon?: React.ReactNode,
+  style: React.CSSProperties,
+}
+
+interface SocialButtonProps {
+  onClick: React.MouseEventHandler<HTMLButtonElement>,
+}
+
+export const ActionButton = (props: ActionProps) => {
 
 
   return (
     <FormButton
       variant="contained"
       fullWidth
-      {...props}
+      onClick={props.onClick}
+      style={props.style}
     >
       {props.children}
     </FormButton>
   )
 }
 
-export const GoogleButton = (props: any) => {
+export const GoogleButton = (props: SocialButtonProps) => {
   return (
     <ActionButton
       startIcon={<GoogleIcon style={{ fontSize: "1.5rem" }} />}
       style={{ backgroundColor: '#4285f4' }}
+      onClick={props.onClick}
     >
       Continue With Google
     </ActionButton>
@@ -41,11 +54,13 @@ export const GoogleButton = (props: any) => {
 }
 
 
-export const FacebookButton = (props: any) => {
+export const FacebookButton = (props: SocialButtonProps) => {
   return (
     <ActionButton
       startIcon={<FacebookRoundedIcon style={{ fontSize: "1.5rem" }} />}
       style={{ backgroundColor: '#3b5998' }}
+      onClick={props.onClick}
+
     >
       Continue With Facebook
     </ActionButton>
