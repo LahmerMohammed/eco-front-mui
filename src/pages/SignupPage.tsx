@@ -16,6 +16,8 @@ export function SignupPage(props: Props) {
 
   const classes = useStyles();
 
+  const handleRegister = () => { }
+
   return (
     <Box className={classes.root} >
       <Paper className={classes.container}>
@@ -49,18 +51,18 @@ export function SignupPage(props: Props) {
           />
           <ActionButton
             style={{ backgroundColor: '#d23f57' }}
-            type="submit"
 
+            onClick={handleRegister}
           >
-            Login
+            Signup
           </ActionButton>
         </Box>
         <Divider
         >
           on
         </Divider>
-        <FacebookButton />
-        <GoogleButton />
+        <FacebookButton onClick={() => { }} />
+        <GoogleButton onClick={() => { }} />
         <Box component="div" className={classes.signup}>
           <p>Don't have an Account?{" "}</p>
           <Link color="#000" href="#">Signup</Link>
