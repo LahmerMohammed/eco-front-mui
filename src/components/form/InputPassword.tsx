@@ -45,17 +45,15 @@ export function InputPassword(props: OutlinedInputProps) {
     <>
       <InputLabel
         required
-        htmlFor={props.name ? props.name : "password"}
+        htmlFor={props.id}
       >
-        {props.label ? props.label : "Password"}
+        {props.label}
       </InputLabel>
       <OutlinedInput
-        id={props.name ? props.name : "password"}
         required
         fullWidth
-        name={props.name ? props.name : "password"}
-        type={showPassword ? 'text' : 'password'}
         className={`${classes.itemMargin} ${classes.text}`}
+        type={showPassword ? "text" : "password"}
         endAdornment={<PasswordAdornment showPassword={showPassword} setShowPassword={setShowPassword} />}
         {...props}
       />
