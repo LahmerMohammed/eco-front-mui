@@ -26,7 +26,7 @@ export function SignupPage(props: Props) {
 
   const [error, setError] = React.useState({
     show: false,
-    message: '',
+    message: "",
   });
 
   const [form, setForm] = React.useState({
@@ -56,8 +56,8 @@ export function SignupPage(props: Props) {
 
       // NOT working !!
       setError({
-        ['message']: res.message,
-        ['show']: true
+        message: res.message,
+        show: !error.show
       });
 
 
