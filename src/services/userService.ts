@@ -2,16 +2,18 @@ import { ConfirmEmailDto, LoginDto, RegisterDto } from './../types/UserTypes';
 
 import {api} from './base' 
 
-const subUrl = "auth"
+const subUrl = "auth/"
 
 class UserService {
 
 
   async login(userLogin: LoginDto) {
     try {
-      return await (
-        await api.post(subUrl + "/login", userLogin)
-      ).data;
+      
+      const response = await api.post(subUrl + "login", userLogin); 
+      
+      return response.data;
+
     } catch (error: any) {
 
       return error.response.data;
@@ -21,7 +23,10 @@ class UserService {
   async register(userRegister: RegisterDto) {
 
     try {
-      return await ( await api.post(subUrl + "/register", userRegister)).data;
+      const response = await api.post(subUrl + "register", userRegister); 
+      
+      return response.data;
+
     } catch (error: any) {
 
       return error.response.data;
