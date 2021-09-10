@@ -19,11 +19,9 @@ export function LoginPage(props: Props) {
 
 
   const [form, setForm] = React.useState({
-    email: "",
+    username: "",
     password: "",
   });
-
-  const [open, setOpen] = React.useState(false);
 
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -35,17 +33,15 @@ export function LoginPage(props: Props) {
     })
   }
 
-  const handleClose = async () => {
 
-    const response = await userService.login(form);
-    console.log(response);
-    setOpen(false);
+  const handleSubmit = async (evt: React.FormEvent<HTMLInputElement>) => {
 
-  }
+    evt.preventDefault();
 
-  const handleLogin = () => {
-    setOpen(true);
-    console.log(" logging ...");
+    const res = await userService.login(form);
+
+    console.log(res);
+
   }
 
   return (
@@ -59,14 +55,15 @@ export function LoginPage(props: Props) {
             Login with email & password
           </Typography>
         </Box>
-        <Box component="form">
+        <Box component="form" onSubmit={handleSubmit}>
 
           <Input
-            name="Email"
-            type={"email"}
-            placeholder="example@gmail.com"
-            label="Email"
-            value={form.email}
+            id="username"
+            name="username"
+            placeholder="your username ..."
+            label="Username"
+            type="text"
+            value={form.username}
             onChange={handleInputChange}
           />
           <InputPassword
@@ -75,7 +72,7 @@ export function LoginPage(props: Props) {
           />
           <ActionButton
             style={{ backgroundColor: '#d23f57' }}
-            onClick={handleLogin}
+            type="submit"
           >
             Login
           </ActionButton>
