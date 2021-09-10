@@ -1,6 +1,6 @@
 
 export interface LoginDto {
-  email: string,
+  username: string,
   password: string,
 }
 
@@ -8,6 +8,7 @@ export interface RegisterDto {
   username: string,
   email: string,
   password: string,
+  rePassword: string,
 }
 
 export interface ConfirmEmailDto {
