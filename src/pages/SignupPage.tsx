@@ -5,18 +5,66 @@ import { ActionButton, FacebookButton, GoogleButton } from '../components/form/F
 import { Input } from '../components/form/Input';
 import { InputPassword } from '../components/form/InputPassword';
 import { ForgetPassword } from '../models/MRegister';
+import { userService } from '../services/userService';
 
 interface Props {
 
 }
 
+
+function ErrorMessage(props: { message: string, show: boolean }) {
+  if (props.show)
+    return null;
+
+  return <Typography style={{ color: 'red' }}>{props.message}</Typography>
+}
+
 export function SignupPage(props: Props) {
 
   const { } = props;
-
   const classes = useStyles();
 
-  const handleRegister = () => { }
+  const [error, setError] = React.useState({
+    show: false,
+    message: '',
+  });
+
+  const [form, setForm] = React.useState({
+    username: "",
+    email: "",
+    password: "",
+    rePassword: "",
+  });
+
+  const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+
+    const { name, value } = evt.target;
+    
+    setForm({
+      ...form,
+      [name]: value
+    })
+  }
+
+  const handleSubmit = async (evt: React.FormEvent<HTMLInputElement>) => {
+    evt.preventDefault();
+
+    const res = await userService.register(form);
+
+    if ('error' in res) {
+
+      /**
+       * job: 
+update error state
+       */
+
+      console.log(error);
+    }
+
+    console.log(res);
+
+  }
+
 
   return (
     <Box className={classes.root} >
@@ -29,30 +77,47 @@ export function SignupPage(props: Props) {
             Please fill all the fields to continue
           </Typography>
         </Box>
-        <Box component="form">
+        <Box component="form" onSubmit={handleSubmit}>
 
           <Input
-            name="Email"
+            name="email"
             type="email"
             placeholder="example@gmail.com"
-            label="Email or Phone Number"
+            label="Email"
+            value={form.email}
+            onChange={handleInputChange}
+
           />
 
           <Input
-            name="fullname"
+            name="username"
             type="text"
-            placeholder="Lahmer Mohammed"
-            label="Fullname"
+            placeholder="moha014"
+            label="Username"
+            value={form.username}
+            onChange={handleInputChange}
+
           />
-          <InputPassword />
+
           <InputPassword
-            name="re-password"
-            label="Retype Password"
+            id="password"
+            label="password"
+            name="password"
+            value={form.password}
+            onChange={handleInputChange}
           />
+          <InputPassword
+            id="re-password"
+            name="rePassword"
+            label="Retype Password"
+            value={form.rePassword}
+            onChange={handleInputChange}
+          />
+
+          <ErrorMessage {...error} />
           <ActionButton
             style={{ backgroundColor: '#d23f57' }}
-
-            onClick={handleRegister}
+            type="submit"
           >
             Signup
           </ActionButton>
@@ -64,10 +129,9 @@ export function SignupPage(props: Props) {
         <FacebookButton onClick={() => { }} />
         <GoogleButton onClick={() => { }} />
         <Box component="div" className={classes.signup}>
-          <p>Don't have an Account?{" "}</p>
-          <Link color="#000" href="#">Signup</Link>
+          <p>Already have an Account?{" "}</p>
+          <Link color="#000" href="#">Login</Link>
         </Box>
-        <ForgetPassword />
       </Paper>
     </Box>
   );
