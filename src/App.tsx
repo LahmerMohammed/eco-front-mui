@@ -26,7 +26,7 @@ function App() {
 			<Header setOpen={setOpen} />
 			<NavBar />
 			<MRegister open={open} setOpen={setOpen} /> */}
-			<ConfirmEmailPage user_email="lahmermohammed65@gmail.com" />
+			<SignupPage />
 		</div>
 	);
 }

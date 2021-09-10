@@ -39,7 +39,7 @@ export function SignupPage(props: Props) {
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
 
     const { name, value } = evt.target;
-    
+
     setForm({
       ...form,
       [name]: value
@@ -47,16 +47,19 @@ export function SignupPage(props: Props) {
   }
 
   const handleSubmit = async (evt: React.FormEvent<HTMLInputElement>) => {
+
     evt.preventDefault();
 
     const res = await userService.register(form);
 
     if ('error' in res) {
 
-      /**
-       * job: 
-update error state
-       */
+      // NOT working !!
+      setError({
+        ['message']: res.message,
+        ['show']: true
+      });
+
 
       console.log(error);
     }
