@@ -3,15 +3,8 @@ import { InputLabel, OutlinedInput, OutlinedInputProps, Theme } from '@mui/mater
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
 
-interface InputProps {
-  name: string,
-  type: string,
-  placeholder?: string,
-  label?: string,
-}
 
-
-export function Input(props: InputProps & OutlinedInputProps) {
+export function Input(props: OutlinedInputProps) {
 
   const { } = props;
   const classes = useStyles();
@@ -20,17 +13,14 @@ export function Input(props: InputProps & OutlinedInputProps) {
     <>
       <InputLabel
         required
-        htmlFor={props.label}
+        htmlFor={props.id}
       >
         {props.label}
       </InputLabel>
       <OutlinedInput
         required
         fullWidth
-        id={props.name}
-        type={props.type}
-        name={props.name}
-        placeholder={props.placeholder}
+        {...props}
         className={`${classes.itemMargin} ${classes.text}`}
       />
     </>
