@@ -13,7 +13,7 @@ interface Props {
 
 
 function ErrorMessage(props: { message: string, show: boolean }) {
-  if (props.show)
+  if (!props.show)
     return null;
 
   return <Typography style={{ color: 'red' }}>{props.message}</Typography>
@@ -43,8 +43,11 @@ export function SignupPage(props: Props) {
     setForm({
       ...form,
       [name]: value
-    })
+    });
   }
+
+  console.log(error);
+
 
   const handleSubmit = async (evt: React.FormEvent<HTMLInputElement>) => {
 
@@ -52,20 +55,15 @@ export function SignupPage(props: Props) {
 
     const res = await userService.register(form);
 
+    console.log(res);
+
     if ('error' in res) {
 
-      // NOT working !!
       setError({
         message: res.message,
         show: !error.show
       });
-
-
-      console.log(error);
     }
-
-    console.log(res);
-
   }
 
 
