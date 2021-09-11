@@ -145,7 +145,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     alignItems: 'center',
     backgroundColor: '#f6f9fc',
     width: '100vw',
-    height: '100vh'
+    paddingTop: '2%',
+    paddingBottom: '2%',
+    overflowY: 'hidden'
   },
   container: {
     padding: '2rem',
