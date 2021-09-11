@@ -34,8 +34,6 @@ function App() {
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
 	root: {
-		width: '100vw',
-		height: '100vh',
 		maxWidth: '1990px',
 		backgroundColor: '#f6f9fc',
 	}
