@@ -15,19 +15,12 @@ const FormButton = styled(Button)<ButtonProps>(({ theme: Theme }) => ({
 }));
 
 
-interface ActionProps {
-  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined,
-  children: any,
-  startIcon?: React.ReactNode,
-  style?: React.CSSProperties,
-  type?: "button" | "submit" | "reset" | undefined;
-}
 
 interface SocialButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined,
 }
 
-export const ActionButton = (props: ActionProps) => {
+export const ActionButton = (props: ButtonProps) => {
 
 
   return (
