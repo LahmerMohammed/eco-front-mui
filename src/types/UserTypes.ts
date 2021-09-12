@@ -14,3 +14,7 @@ export interface RegisterDto {
 export interface ConfirmEmailDto {
   token: string,
 }
+
+export interface ResendConfirmEmailDto {
+  email: string,
+}
