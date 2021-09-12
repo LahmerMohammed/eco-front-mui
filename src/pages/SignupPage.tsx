@@ -1,6 +1,7 @@
 import { Box, Divider, Link, Paper, Theme, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
+import { Redirect, useHistory } from 'react-router';
 import { ActionButton, FacebookButton, GoogleButton } from '../components/form/FormButton';
 import { Input } from '../components/form/Input';
 import { InputPassword } from '../components/form/InputPassword';
@@ -24,6 +25,8 @@ export function SignupPage(props: Props) {
   const { } = props;
   const classes = useStyles();
 
+  const history = useHistory();
+
   const [error, setError] = React.useState({
     show: false,
     message: "",
@@ -46,23 +49,33 @@ export function SignupPage(props: Props) {
     });
   }
 
-  console.log(error);
 
 
   const handleSubmit = async (evt: React.FormEvent<HTMLInputElement>) => {
 
-    evt.preventDefault();
+    //evt.preventDefault();
 
-    const res = await userService.register(form);
+    //const res = await userService.register(form);
 
-    console.log(res);
+    const res = {};
 
     if ('error' in res) {
 
       setError({
-        message: res.message,
+        message: /* res.message */"test",
         show: !error.show
       });
+    } else {
+
+      console.log("he")
+
+      history.push({
+        pathname: 'confirm-email',
+        state: {
+          email: form.email,
+        }
+      });
+
     }
   }
 
