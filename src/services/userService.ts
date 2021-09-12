@@ -1,4 +1,4 @@
-import { ConfirmEmailDto, LoginDto, RegisterDto } from './../types/UserTypes';
+import { ConfirmEmailDto, LoginDto, RegisterDto, ResendConfirmEmailDto } from './../types/UserTypes';
 
 import {api} from './base' 
 
@@ -40,6 +40,11 @@ class UserService {
     } catch (error: any) {
       return error.response.data;
     }
+  }
+
+
+  resendConfirmationEmail(data: ResendConfirmEmailDto) {
+    api.post('/resend-confirm-email' , data);
   }
 
 }
