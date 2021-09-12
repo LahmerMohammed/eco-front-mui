@@ -3,20 +3,50 @@ import { Button, Grid, Paper, Theme, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
 import { ActionButton } from '../components/form/FormButton';
+import { useHistory, useLocation } from 'react-router';
+import { userService } from '../services/userService';
+import { ResendConfirmEmailDto } from '../types/UserTypes'
 
 interface Props {
   user_email: string;
 }
 
 
+
+
 /**
  * TODO : add update email 
  */
+
+interface ILocationState {
+  email: string;
+}
+
+
+
 
 export function ConfirmEmailPage(props: Props) {
 
   const { } = props;
   const classes = useStyles(props);
+
+  const [email, setEmail] = React.useState("");
+
+  const location = useLocation<ILocationState>();
+
+  React.useEffect(() => {
+    setEmail(location.state.email);
+  }, [location]);
+
+
+  const handleRensedConfirmation = () => {
+
+    const data: ResendConfirmEmailDto = {
+      email: email
+    }
+    userService.resendConfirmationEmail(data);
+
+  }
 
   return (
     <div className={classes.root}>
@@ -37,10 +67,12 @@ export function ConfirmEmailPage(props: Props) {
             </Typography>
 
             <Typography>
-              Your email : <b>{props.user_email}</b>
+              Your email : <b>{email}</b>
             </Typography>
 
-            <ActionButton style={{ width: '50%' }}>
+            <ActionButton
+              style={{ width: '50%' }}
+              onClick={handleRensedConfirmation}>
               Resend Confirmation
             </ActionButton>
           </Paper>
