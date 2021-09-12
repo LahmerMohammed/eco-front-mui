@@ -2,8 +2,7 @@
 import { Theme } from "@mui/material/styles";
 import { createStyles, makeStyles } from "@mui/styles";
 import * as React from "react";
-import { Router } from "react-router-dom";
-import { RouterSwitch } from 'react-typesafe-routes';
+import { Switch, Route } from "react-router-dom";
 import { Header } from "./components/Header";
 import { NavBar } from "./components/NavBar";
 import { TopHeader } from "./components/TopHeader";
@@ -13,7 +12,6 @@ import { ConfirmEmailPage } from "./pages/ConfirmEmailPage";
 import { HomePage } from "./pages/HomePage";
 import { SignupPage } from "./pages/SignupPage";
 import { UserPage } from "./pages/UserPage";
-import { router } from "./Router";
 
 function App() {
 	const classes = useStyles();
@@ -21,13 +19,19 @@ function App() {
 	const [open, setOpen] = React.useState(false);
 
 	return (
-		<div className={classes.root}>
-			{/* <TopHeader />
+		<>
+			<div className={classes.root}>
+				{/* <TopHeader />
 			<Header setOpen={setOpen} />
 			<NavBar />
 			<MRegister open={open} setOpen={setOpen} /> */}
-			<SignupPage />
-		</div>
+				<Switch>
+					<Route exact path="/confirm-email" component={ConfirmEmailPage} />
+					<Route exact path="/login" component={LoginPage} />
+					<Route exact path="/signup" component={SignupPage} />
+				</Switch>
+			</div>
+		</>
 	);
 }
 
