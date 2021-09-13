@@ -2,7 +2,7 @@ import { Redirect, Route, RouteProps } from "react-router-dom";
 import React from 'react'
 
 
-interface IPrivateRouteProps extends RouteProps {
+interface IPublicRouteProps extends RouteProps {
   // tslint:disable-next-line:no-any
   component?: any;
 
@@ -14,7 +14,7 @@ interface IPrivateRouteProps extends RouteProps {
 function isLogin() { return true; }
 
 
-const privateRoute = (props: IPrivateRouteProps) => {
+const PublicRoute = (props: IPublicRouteProps) => {
 
   const { component: Component, children, ...rest } = props;
 
@@ -25,9 +25,12 @@ const privateRoute = (props: IPrivateRouteProps) => {
       render={props => {
         return isLogin() ? (
           Component ? (<Component  {...props} />) : (children)
-        ) : <Redirect to={{ pathname: '/login' }} />
+        ) : <Redirect to={{ pathname: '/home' }} />
       }}
     />
   )
 
 }
+
+
+export default PublicRoute;
