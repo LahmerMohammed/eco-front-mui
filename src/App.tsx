@@ -12,6 +12,7 @@ import { ConfirmEmailPage } from "./pages/ConfirmEmailPage";
 import { HomePage } from "./pages/HomePage";
 import { SignupPage } from "./pages/SignupPage";
 import { UserPage } from "./pages/UserPage";
+import MainRoutes from "./routes/main/MainRoutes";
 
 function App() {
 	const classes = useStyles();
@@ -21,15 +22,7 @@ function App() {
 	return (
 		<>
 			<div className={classes.root}>
-				{/* <TopHeader />
-			<Header setOpen={setOpen} />
-			<NavBar />
-			<MRegister open={open} setOpen={setOpen} /> */}
-				<Switch>
-					<Route exact path="/confirm-email" component={ConfirmEmailPage} />
-					<Route exact path="/login" component={LoginPage} />
-					<Route exact path="/signup" component={SignupPage} />
-				</Switch>
+				<MainRoutes />
 			</div>
 		</>
 	);
