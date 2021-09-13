@@ -11,6 +11,7 @@ import { NewAddress } from '../components/user/NewAddress'
 import { NewPaymentMethode } from '../components/user/NewPaymentMethode';
 import { UserOrder } from '../components/user/UserOrder';
 import { UserWhishlist } from '../components/user/UserWhishlist';
+import UserRoutes from '../routes/user/UserRoutes';
 
 
 interface Props {
@@ -40,17 +41,7 @@ export function UserPage(props: Props) {
             </Grid>
           </Grid>
           <Grid item xs={12} lg={7}>
-            <Switch>
-              <Route exact path="/profile" >
-                <UserProfile {...user} />
-              </Route>
-              <Route exact path="/orders" component={UserOrder} />
-              <Route exact path="/address" component={UserAddress} />
-              <Route exact path="/whishlist" component={UserWhishlist} />
-              <Route exact path="/payment-methods" component={PaymentMethods} />
-              <Route exact path="/address/add" component={NewAddress} />
-              <Route exact path="/payment-methods/add" component={NewPaymentMethode} />
-            </Switch>
+            <UserRoutes />
           </Grid>
         </Grid>
       </Box>
