@@ -18,3 +18,21 @@ export interface ConfirmEmailDto {
 export interface ResendConfirmEmailDto {
   email: string,
 }
+
+
+export enum Role {
+  USER="user",
+  ADMIN="admin",
+  SUPER_ADMIN="super_admin",
+  SELLER="seller",
+}
+
+export interface IUser {
+  id: string,
+  email: string,
+  username: string,
+  fullname: string,
+  birthdate: Date,
+  roles: Role[],
+  whishlist_counter: number;
+} 
