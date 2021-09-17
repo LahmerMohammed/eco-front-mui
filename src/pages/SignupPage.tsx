@@ -53,21 +53,19 @@ export function SignupPage(props: Props) {
 
   const handleSubmit = async (evt: React.FormEvent<HTMLInputElement>) => {
 
-    //evt.preventDefault();
+    evt.preventDefault();
 
-    //const res = await userService.register(form);
+    const res = await userService.register(form);
 
-    const res = {};
 
     if ('error' in res) {
 
       setError({
-        message: /* res.message */"test",
-        show: !error.show
+        message: res.message,
+        show: true,
       });
     } else {
 
-      console.log("he")
 
       history.push({
         pathname: 'confirm-email',
