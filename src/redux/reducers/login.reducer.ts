@@ -1,6 +1,7 @@
+import { IUser , IError } from '../../types';
 import { LOGIN_ACTIONS } from '../action-types/actions';
 import { IUserState } from '../types';
-import { IACTION } from "../types";
+import { IAction } from "../types";
 
 
 
@@ -9,19 +10,19 @@ import { IACTION } from "../types";
 const initState: IUserState = {
   logginIn: false,
   loggedIn: false,
-  user: {},
-  error: {},
+  user: {} as IUser,
+  error: {} as IError,
 };
 
 
 
-export function loginReducer(state: IUserState = initState , action: IACTION ) : IUserState{
+export function loginReducer(state: IUserState = initState , action: IAction ) : IUserState{
 
   switch(action.type)
   {
     case LOGIN_ACTIONS.REQUEST: 
     {
-      return { ...state , logginIn: true};
+      return { ...initState , logginIn: true};
     }
 
     case LOGIN_ACTIONS.SUCESS: 
@@ -36,7 +37,7 @@ export function loginReducer(state: IUserState = initState , action: IACTION ) :
 
     default: 
     {
-      return {...state}
+      return state;
     }
   }
 
