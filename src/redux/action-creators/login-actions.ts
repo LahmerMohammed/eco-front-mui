@@ -1,31 +1,38 @@
 import { LOGIN_ACTIONS } from '../action-types/actions';
-import { LoginDto } from '../../types/UserTypes';
-import { IACTION } from '../types';
+import { IError, IUser} from '../../types/index';
+import { IAction } from '../types';
 import { Dispatch } from 'redux';
 
 
+export const actionCreators = {
+  loginRequest,
+  loginFailure,
+  loginSuccess
+} 
 
 
-export function loginRequest(user: LoginDto)  {
+export function loginRequest(){
 
   
-  return (dispatch: Dispatch<IACTION>) => dispatch({
+  return (dispatch: Dispatch<IAction>) => dispatch({
     type: LOGIN_ACTIONS.REQUEST,
+  });
+}
+
+export function loginSuccess(user: IUser){
+
+  return (disptach: Dispatch<IAction>) => disptach({
+    type: LOGIN_ACTIONS.SUCESS,
     payload: user
   });
+
 }
 
-export function loginSuccess(user: any){
-  return (disptach: Dispatch<IACTION>) => disptach({
-    type: LOGIN_ACTIONS.REQUEST,
-  payload: user
-  });
-}
+export function loginFailure(error: IError){
 
-export function loginFailure(error: any){
-
-  return (disptach: Dispatch<IACTION>) =>  disptach({
-    type: LOGIN_ACTIONS.REQUEST,
+  return (disptach: Dispatch<IAction>) =>  disptach({
+    type: LOGIN_ACTIONS.FAILURE,
     payload: error,
   });
+
 }
