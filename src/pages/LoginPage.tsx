@@ -1,21 +1,46 @@
 import { Backdrop, Box, CircularProgress, Container, Divider, Link, Paper, Theme, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ActionButton, FacebookButton, GoogleButton } from '../components/form/FormButton';
 import { Input } from '../components/form/Input';
 import { InputPassword } from '../components/form/InputPassword';
 import { ForgetPassword } from '../models/MRegister';
 import { userService } from '../services/userService';
+import { actionCreators } from '../redux/action-creators/login-actions'
+import { bindActionCreators } from 'redux';
+import { RootState } from '../redux/reducers';
+import { IError } from '../types/index';
 
 interface Props {
 
 }
 
+function ErrorMessage(props: IError) {
+  if (!props.message)
+    return null;
+
+  return <Typography style={{ color: 'red' }}>{props.message}</Typography>
+}
+
 export function LoginPage(props: Props) {
 
-  const { } = props;
+
+  const error = useSelector((state: RootState) => state.login.error);
 
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+
+  const clearPassword = () => {
+
+    setForm({
+      ...form,
+      password: "",
+    });
+  }
+
+  const { loginRequest, loginFailure, loginSuccess } = bindActionCreators(actionCreators, dispatch);
 
 
   const [form, setForm] = React.useState({
@@ -38,9 +63,16 @@ export function LoginPage(props: Props) {
 
     evt.preventDefault();
 
+    loginRequest();
     const res = await userService.login(form);
 
-    console.log(res);
+
+    if ('error' in res) {
+      loginFailure(res);
+      clearPassword();
+    } else {
+      loginSuccess(res);
+    }
 
   }
 
@@ -69,7 +101,10 @@ export function LoginPage(props: Props) {
           <InputPassword
             value={form.password}
             onChange={handleInputChange}
+            name="password"
+            label="Password"
           />
+          <ErrorMessage {...error} />
           <ActionButton
             style={{ backgroundColor: '#d23f57' }}
             type="submit"
