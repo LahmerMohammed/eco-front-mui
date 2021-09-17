@@ -1,4 +1,4 @@
-import { ConfirmEmailDto, LoginDto, RegisterDto, ResendConfirmEmailDto } from './../types/UserTypes';
+import { ConfirmEmailDto, LoginDto, RegisterDto, ResendConfirmEmailDto } from '../types';
 
 import {api} from './base' 
 
