@@ -1,5 +1,6 @@
+import { IUser } from "../../types";
 
-export interface IACTION
+export interface IAction
 {
   type: string,
   payload?: any,
@@ -8,6 +9,6 @@ export interface IACTION
 export interface IUserState {
   logginIn: boolean,
   loggedIn: boolean,
-  user: any,
+  user: IUser,
   error: any,
 }
