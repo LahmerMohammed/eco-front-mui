@@ -5,7 +5,7 @@ import * as React from 'react';
 import { ActionButton } from '../components/form/FormButton';
 import { useHistory, useLocation } from 'react-router';
 import { userService } from '../services/userService';
-import { ResendConfirmEmailDto } from '../types/UserTypes'
+import { ResendConfirmEmailDto } from '../types'
 
 interface Props {
   user_email: string;
