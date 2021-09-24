@@ -11,6 +11,8 @@ import { actionCreators } from '../redux/action-creators/login-actions'
 import { bindActionCreators } from 'redux';
 import { RootState } from '../redux/reducers';
 import { IError } from '../types/index';
+import { useHistory } from 'react-router-dom';
+import { api } from '../services/base';
 
 interface Props {
 
@@ -27,18 +29,18 @@ export function LoginPage(props: Props) {
 
 
   const error = useSelector((state: RootState) => state.login.error);
-
   const classes = useStyles();
-
   const dispatch = useDispatch();
+  const history = useHistory();
+
 
   const clearPassword = () => {
-
     setForm({
       ...form,
       password: "",
     });
   }
+
 
   const { loginRequest, loginFailure, loginSuccess } = bindActionCreators(actionCreators, dispatch);
 
@@ -68,10 +70,18 @@ export function LoginPage(props: Props) {
 
 
     if ('error' in res) {
+
       loginFailure(res);
       clearPassword();
+
     } else {
       loginSuccess(res);
+
+      console.log(api.get('/users'));
+
+      /* history.push({
+        pathname: '/'
+      }); */
     }
 
   }
