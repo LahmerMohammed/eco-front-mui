@@ -9,11 +9,9 @@ class UserService {
 	async getUserByEmail(email: string) {
 		try {
       
-     /*  const response : IUser = (await api.get(userUrl + `email/${email}`)).data; 
+      const response : IUser = (await api.get(userUrl + `email/${email}`)).data; 
 
-      return response; */
-      const user = { email: "mohammed" , username:"lahmer"} as IUser;
-      return  user;
+      return response;
 
     } catch (error: any) {
 

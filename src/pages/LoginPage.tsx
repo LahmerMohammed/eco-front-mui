@@ -77,11 +77,9 @@ export function LoginPage(props: Props) {
     } else {
       loginSuccess(res);
 
-      console.log(api.get('/users'));
-
-      /* history.push({
+      history.push({
         pathname: '/'
-      }); */
+      });
     }
 
   }
