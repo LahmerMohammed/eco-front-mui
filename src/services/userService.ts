@@ -1,18 +1,39 @@
+import { IUser } from './../types/index';
 import { ConfirmEmailDto, LoginDto, RegisterDto, ResendConfirmEmailDto } from '../types';
 
-import {api} from './base' 
+import {api, setToken} from './base' 
 
 const subUrl = "auth/"
-
+const userUrl = "users/"
 class UserService {
+	async getUserByEmail(email: string) {
+		try {
+      
+     /*  const response : IUser = (await api.get(userUrl + `email/${email}`)).data; 
+
+      return response; */
+      const user = { email: "mohammed" , username:"lahmer"} as IUser;
+      return  user;
+
+    } catch (error: any) {
+
+      throw error;
+    }
+	}
 
 
   async login(userLogin: LoginDto) {
     try {
       
-      const response = await api.post(subUrl + "login", userLogin); 
-      
-      return response.data;
+      const response : {user: IUser ,access_token: string} = (await api.post(subUrl + "login", userLogin)).data; 
+
+      localStorage.setItem('token',response.access_token);
+      localStorage.setItem('email',response.user.email);
+
+
+      setToken(response.access_token);
+
+      return response;
 
     } catch (error: any) {
 
