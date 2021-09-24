@@ -5,3 +5,5 @@ export enum LOGIN_ACTIONS {
   SUCESS='success',
   FAILURE='failure',
 }
+
+export const LOAD_USER = "load_user";

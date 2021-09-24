@@ -1,3 +1,4 @@
+import { LOAD_USER } from './../action-types/actions';
 import { LOGIN_ACTIONS } from '../action-types/actions';
 import { IError, IUser} from '../../types/index';
 import { IAction } from '../types';
@@ -7,7 +8,8 @@ import { Dispatch } from 'redux';
 export const actionCreators = {
   loginRequest,
   loginFailure,
-  loginSuccess
+  loginSuccess,
+  loadUser,
 } 
 
 
@@ -25,7 +27,6 @@ export function loginSuccess(user: IUser){
     type: LOGIN_ACTIONS.SUCESS,
     payload: user
   });
-
 }
 
 export function loginFailure(error: IError){
@@ -34,5 +35,12 @@ export function loginFailure(error: IError){
     type: LOGIN_ACTIONS.FAILURE,
     payload: error,
   });
+}
 
+export function loadUser(user: IUser){
+
+  return (disptach: Dispatch<IAction>) =>  disptach({
+    type: LOAD_USER,
+    payload: user,
+  });
 }
