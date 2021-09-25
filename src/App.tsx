@@ -7,7 +7,7 @@ import { Header } from "./components/Header";
 import { NavBar } from "./components/NavBar";
 import { TopHeader } from "./components/TopHeader";
 import { MRegister } from "./models/MRegister";
-import { LoginPage } from "./pages";
+import { LoginPage } from "./pages/LoginPage";
 import { ConfirmEmailPage } from "./pages/ConfirmEmailPage";
 import { HomePage } from "./pages/HomePage";
 import { SignupPage } from "./pages/SignupPage";
@@ -29,38 +29,6 @@ function App() {
 	const [open, setOpen] = React.useState(false);
 
 	const dispatch = useDispatch();
-	const history = useHistory();
-
-	const { loadUser } = bindActionCreators(actionCreators, dispatch);
-
-	const init = async () => {
-		const token = localStorage.getItem('token');
-		const email = localStorage.getItem('email');
-
-		if (token && email) {
-
-			setToken(token);
-
-			const user = await userService.getUserByEmail(email);
-
-
-
-			if (user) {
-				loadUser(user);
-				history.push({
-					pathname: '/',
-				});
-			} else {
-				history.push({
-					pathname: '/login',
-				});
-			}
-		}
-	}
-
-	init();
-
-
 
 	return (
 		<>
