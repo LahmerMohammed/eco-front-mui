@@ -9,6 +9,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PaymentIcon from '@mui/icons-material/Payment';
 
 import { UserDashboardItem } from './UserDashboardItem';
+import { useRouteMatch } from 'react-router';
 
 
 interface Props {
@@ -19,6 +20,8 @@ export function UserMenu(props: Props) {
 
   const { } = props;
   const classes = useStyles();
+
+  const { url } = useRouteMatch();
 
   return (
     <Box style={style.root}>
@@ -32,13 +35,13 @@ export function UserMenu(props: Props) {
               title="Whishlist"
               value={3}
               icon={<FavoriteBorderOutlinedIcon fontSize="large" />}
-              to="/whishlist"
+              to={`${url}/whishlist`}
             />
             <UserDashboardItem
               title="Orders"
               value={3}
               icon={<ShoppingBagIcon fontSize="large" />}
-              to="/orders"
+              to={`${url}/orders`}
             />
 
           </Grid>
@@ -50,20 +53,20 @@ export function UserMenu(props: Props) {
               title="Profile Info"
               value={3}
               icon={<AccountCircleRoundedIcon fontSize="large" />}
-              to="/profile"
+              to={`${url}/profile`}
             />
             <UserDashboardItem
               title="Addresses"
               value={3}
               icon={<LocationOnIcon fontSize="large" />}
-              to="/address"
+              to={`${url}/address`}
             />
 
             <UserDashboardItem
               title="Payment Methods"
               value={3}
               icon={<PaymentIcon fontSize="large" />}
-              to="/payment-methods"
+              to={`${url}/payment-methods`}
             />
           </Grid>
         </Grid>
