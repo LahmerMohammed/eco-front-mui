@@ -1,5 +1,6 @@
 import { Redirect, Route, RouteProps } from "react-router-dom";
 import React from 'react'
+import { isLogin } from "./utils";
 
 
 interface IPrivateRouteProps extends RouteProps {
@@ -11,7 +12,7 @@ interface IPrivateRouteProps extends RouteProps {
 }
 
 
-function isLogin() { return true; }
+
 
 
 const PrivateRoute = (props: IPrivateRouteProps) => {
