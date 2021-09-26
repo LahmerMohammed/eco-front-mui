@@ -20,6 +20,8 @@ interface Props {
 
 export function UserPage(props: Props) {
 
+  console.log('hi');
+
   const { } = props;
   const classes = useStyles();
 
@@ -32,20 +34,18 @@ export function UserPage(props: Props) {
   }
 
   return (
-    <Router>
-      <Box style={style.root}>
-        <Grid container className={classes.container}>
-          <Grid item container md={12} lg={3} justifyContent="flex-end" >
-            <Grid item md={12} xl={8}>
-              <UserMenu />
-            </Grid>
-          </Grid>
-          <Grid item xs={12} lg={7}>
-            <UserRoutes />
+    <Box style={style.root}>
+      <Grid container className={classes.container}>
+        <Grid item container md={12} lg={3} justifyContent="flex-end" >
+          <Grid item md={12} xl={8}>
+            <UserMenu />
           </Grid>
         </Grid>
-      </Box>
-    </Router>
+        <Grid item xs={12} lg={7}>
+          <UserRoutes />
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 
