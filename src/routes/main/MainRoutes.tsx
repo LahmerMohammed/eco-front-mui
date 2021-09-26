@@ -18,10 +18,10 @@ function MainRoutes(props: Props) {
 
   return (
     <Switch>
-      <PublicRoute exact restricted={true} path="/confirm-email" component={ConfirmEmailPage} />
-      <PublicRoute exact restricted={true} path="/login" component={LoginPage} />
-      <PublicRoute exact restricted={true} path="/signup" component={SignupPage} />
-      <PublicRoute exact restricted={false} path="/" component={Dashbord} />
+      <PublicRoute restricted={true} path="/confirm-email" component={ConfirmEmailPage} />
+      <PublicRoute restricted={true} path="/login" component={LoginPage} />
+      <PublicRoute restricted={true} path="/signup" component={SignupPage} />
+      <PublicRoute restricted={false} path="/" component={Dashbord} />
     </Switch>
   );
 

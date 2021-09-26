@@ -20,8 +20,8 @@ function DashbordRoutes(props: Props) {
 
   return (
     <Switch>
-      <PrivateRoute path={`${path}/user`} component={UserPage} />
-      <PublicRoute restricted={false} exact path={`${path}`} component={HomePage} />
+      <PrivateRoute path={`/user`} component={UserPage} />
+      <PublicRoute exact restricted={false} path={`${path}`} component={HomePage} />
     </Switch>
   );
 
