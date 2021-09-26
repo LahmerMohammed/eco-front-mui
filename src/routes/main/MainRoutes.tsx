@@ -12,15 +12,16 @@ interface Props {
 
 }
 
-function MainRoutes(props: Props) {
 
+
+function MainRoutes(props: Props) {
 
   return (
     <Switch>
-      <PublicRoute exact path="/confirm-email" component={ConfirmEmailPage} />
-      <PublicRoute exact path="/login" component={LoginPage} />
-      <PublicRoute exact path="/signup" component={SignupPage} />
-      <PublicRoute exact path="/" component={Dashbord} />
+      <PublicRoute exact restricted={true} path="/confirm-email" component={ConfirmEmailPage} />
+      <PublicRoute exact restricted={true} path="/login" component={LoginPage} />
+      <PublicRoute exact restricted={true} path="/signup" component={SignupPage} />
+      <PublicRoute exact restricted={false} path="/" component={Dashbord} />
     </Switch>
   );
 
