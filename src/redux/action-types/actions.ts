@@ -7,3 +7,4 @@ export enum LOGIN_ACTIONS {
 }
 
 export const LOAD_USER = "load_user";
+export const LOGOUT = "logout";

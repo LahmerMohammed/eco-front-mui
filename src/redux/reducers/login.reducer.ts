@@ -1,5 +1,5 @@
 import { IUser , IError } from '../../types';
-import { LOAD_USER, LOGIN_ACTIONS } from '../action-types/actions';
+import { LOAD_USER, LOGIN_ACTIONS, LOGOUT } from '../action-types/actions';
 import { IUserState } from '../types';
 import { IAction } from "../types";
 
@@ -38,6 +38,11 @@ export function loginReducer(state: IUserState = initState , action: IAction ) :
     case LOAD_USER: 
     {
       return {...state , loggedIn: true , user: action.payload};
+    }
+
+    case LOGOUT: 
+    {
+      return initState;
     }
 
     default: 

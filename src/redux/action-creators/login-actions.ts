@@ -1,4 +1,4 @@
-import { LOAD_USER } from './../action-types/actions';
+import { LOAD_USER, LOGOUT } from './../action-types/actions';
 import { LOGIN_ACTIONS } from '../action-types/actions';
 import { IError, IUser} from '../../types/index';
 import { IAction } from '../types';
@@ -10,6 +10,7 @@ export const actionCreators = {
   loginFailure,
   loginSuccess,
   loadUser,
+  logout,
 } 
 
 
@@ -44,3 +45,9 @@ export function loadUser(user: IUser){
     payload: user,
   });
 }
+
+
+export function logout(){
+  return (disptach: Dispatch<IAction>) =>  disptach({type: LOGOUT});
+}
+
