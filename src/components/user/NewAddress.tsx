@@ -5,6 +5,7 @@ import * as React from 'react';
 import { Input } from '../form/Input';
 import { Section } from './Section';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { useRouteMatch } from 'react-router';
 
 
 
@@ -29,9 +30,11 @@ export function NewAddress() {
 
   }
 
-  const handleBackButton = () => {
+  const handleBackButton = () => { }
 
-  }
+  const { url } = useRouteMatch();
+
+  console.log("url" + url);
 
   return (
     <Section
@@ -41,7 +44,7 @@ export function NewAddress() {
       button="Back to Address"
       style={style.paperWrapper}
       onClick={handleBackButton}
-      to="/address"
+      to="/user/address"
     >
       <Paper style={style.paper}>
         <Grid container wrap="wrap" style={style.form} rowGap="3rem">

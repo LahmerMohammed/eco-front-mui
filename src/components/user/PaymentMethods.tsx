@@ -53,7 +53,7 @@ export function PaymentMethods(props: Props) {
       title="Payment Methods"
       button="Add new Payment Method"
       style={style.root}
-      to="/payment-methods/add"
+      to="/user/payment-methods/add"
     >
 
       {

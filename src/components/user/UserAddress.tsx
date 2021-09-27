@@ -53,7 +53,7 @@ export function UserAddress(props: Props) {
       title="My Addresses"
       button="add new Address"
       style={style.addressList}
-      to="/address/add"
+      to="/user/address/add"
 
     >
       {

@@ -20,7 +20,6 @@ interface Props {
 
 export function UserPage(props: Props) {
 
-  console.log('hi');
 
   const { } = props;
   const classes = useStyles();

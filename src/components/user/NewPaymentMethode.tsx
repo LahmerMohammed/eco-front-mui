@@ -43,7 +43,7 @@ export function NewPaymentMethode() {
       button="Back to Payment Methods"
       style={style.paperWrapper}
       onClick={handleBackButton}
-      to="/payment-methods"
+      to="/user/payment-methods"
     >
       <Paper style={style.paper}>
         <Grid container wrap="wrap" style={style.form} rowGap="3rem">
