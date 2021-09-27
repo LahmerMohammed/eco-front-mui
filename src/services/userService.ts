@@ -19,6 +19,10 @@ class UserService {
     }
 	}
 
+  logout(){
+    // add token black list
+    localStorage.clear();
+  }
 
   async login(userLogin: LoginDto) {
     try {
