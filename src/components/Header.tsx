@@ -1,11 +1,16 @@
 // prettier-ignore
-import { Badge, Button, Container, Grid, IconButton, Theme, Typography } from '@mui/material';
+import { Badge, Button, Container, Grid, IconButton, Menu, MenuItem, Theme, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { SearchBar } from './SearchBar';
-import { NavBar } from './NavBar';
+import { useHistory } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/reducers';
+import { userService } from '../services/userService';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../redux/action-creators/login-actions';
 
 
 interface Props {
@@ -13,6 +18,53 @@ interface Props {
 }
 
 export function Header(props: Props) {
+
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+
+  const { logout } = bindActionCreators(actionCreators, dispatch);
+
+  const loggedIn: boolean = useSelector((state: RootState) => state.login.loggedIn);
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const openMenu = Boolean(anchorEl);
+
+  const handleClickMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+
+  const handleUserClick = (event: React.MouseEvent<HTMLElement>) => {
+
+
+    if (loggedIn) {
+      setAnchorEl(event.currentTarget);
+    } else {
+      setOpen(true);
+    }
+
+  }
+
+  const CloseMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const handleOnClickMenu = (name: string) => {
+    if (name == "profile") {
+      history.push({
+        pathname: '/user/profile'
+      });
+    } else if (name == "logout") {
+      logout();
+      userService.logout();
+      history.push({
+        pathname: '/'
+      });
+    }
+
+    CloseMenu();
+  }
 
   const { setOpen } = props;
   const classes = useStyles();
@@ -27,10 +79,31 @@ export function Header(props: Props) {
         </Grid>
         <Grid sx={{ display: { xs: 'none', md: 'flex' } }} md={2} xl={3} container className={classes.accountCart}>
           <Grid sx={{ mr: { lg: '2rem' } }} item md={6} lg={3} xl={1} className={classes.item}>
-            <IconButton size="medium" onClick={() => setOpen(true)}>
+            <IconButton size="medium"
+              onClick={handleUserClick}
+            >
               <AccountCircleRoundedIcon fontSize="large" />
             </IconButton>
           </Grid>
+          <Menu
+            id="demo-positioned-menu"
+            aria-labelledby="demo-positioned-button"
+            anchorEl={anchorEl}
+
+            open={openMenu}
+            onClose={CloseMenu}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+          >
+            <MenuItem onClick={() => handleOnClickMenu("profile")}>Profile</MenuItem>
+            <MenuItem onClick={() => handleOnClickMenu("logout")}>Logout</MenuItem>
+          </Menu>
           <Grid sx={{ ml: { lg: '2rem' } }} item md={6} lg={3} xl={1} className={classes.item}>
             <IconButton size="medium">
               <Badge badgeContent={3} color="secondary">
