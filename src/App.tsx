@@ -30,6 +30,26 @@ function App() {
 
 	const dispatch = useDispatch();
 
+	const { loadUser } = bindActionCreators(actionCreators, dispatch);
+
+	const onEnter = async () => {
+
+		const token = localStorage.getItem('token');
+		const email = localStorage.getItem('email');
+
+		if (token && email) {
+			const user = await userService.getUserByEmail(email);
+
+			if (user) {
+				loadUser(user);
+			}
+		}
+	}
+
+	React.useEffect(() => {
+		onEnter();
+	}, []);
+
 	return (
 		<>
 			<div className={classes.root}>
