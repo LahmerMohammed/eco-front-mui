@@ -23,7 +23,7 @@ export function PaymentMethode(props: Props) {
   return (
     <Paper elevation={0} style={style.paper} className={classes.paper}>
       <Grid container alignItems="center">
-        <Grid container item md={4} >
+        <Grid container item md={4} alignItems="center">
           <Grid item xs={2}>
             <Paper>
               <img style={{ maxWidth: '100%' }} src={process.env.PUBLIC_URL + '/assets/' + props.image} />
