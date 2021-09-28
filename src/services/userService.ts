@@ -19,8 +19,11 @@ class UserService {
     }
 	}
 
-  logout(){
-    // add token black list
+  logout(token: string | null){
+    // add token to blacklist if not expired
+    api.post(userUrl + "blacklist" , {token: token});
+    
+    // clear token & email from localStorage
     localStorage.clear();
   }
 
@@ -73,3 +76,7 @@ class UserService {
 }
 
 export const userService = new UserService();
+
+
+
+
