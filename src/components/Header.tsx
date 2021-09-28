@@ -50,14 +50,21 @@ export function Header(props: Props) {
     setAnchorEl(null);
   };
 
-  const handleOnClickMenu = (name: string) => {
-    if (name == "profile") {
+  const handleOnClickMenu = (id: string) => {
+
+    if (id == "profile") {
+
       history.push({
         pathname: '/user/profile'
       });
-    } else if (name == "logout") {
+
+    } else if (id == "logout") {
+
       logout();
-      userService.logout();
+      const token = localStorage.getItem('token');
+
+      userService.logout(token);
+
       history.push({
         pathname: '/'
       });
