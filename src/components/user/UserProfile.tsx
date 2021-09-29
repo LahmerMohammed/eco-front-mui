@@ -8,6 +8,9 @@ import DatePicker from '@mui/lab/DatePicker';
 import * as React from 'react';
 import { Input } from '../form/Input';
 import { Section } from './Section';
+import { IUser } from '../../types';
+import { RootState } from '../../redux/reducers';
+import { useSelector } from 'react-redux';
 
 
 interface UserProfileProps {
@@ -18,12 +21,18 @@ interface UserProfileProps {
   birthdate?: Date,
 }
 
-export function UserProfile(props: UserProfileProps) {
+export function UserProfile() {
 
   const classes = useStyles();
 
+  const user: IUser = useSelector((state: RootState) => state.login.user);
+
   const [form, setForm] = React.useState<UserProfileProps>({
-    ...props
+    firstname: user.fullname.split(" ")[0],
+    lastname: user.fullname.split(" ")[1],
+    birthdate: user.birthdate,
+    phonenumber: user.phonenumber,
+    email: user.email
   });
 
   const [disabled, setDisabled] = React.useState(true);
@@ -52,6 +61,12 @@ export function UserProfile(props: UserProfileProps) {
       ...form,
       birthdate: date,
     })
+  }
+
+  const handleSaveChanges = () => {
+
+
+
   }
 
   return (
