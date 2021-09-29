@@ -3,13 +3,13 @@ import { ConfirmEmailDto, LoginDto, RegisterDto, ResendConfirmEmailDto } from '.
 
 import {api, setToken} from './base' 
 
-const subUrl = "auth/"
-const userUrl = "users/"
+const subUrl = "auth"
+const userUrl = "users"
 class UserService {
 	async getUserByEmail(email: string) {
 		try {
       
-      const response : IUser = (await api.get(userUrl + `email/${email}`)).data; 
+      const response : IUser = (await api.get(userUrl + `/email/${email}`)).data; 
 
       return response;
 
@@ -21,7 +21,7 @@ class UserService {
 
   logout(token: string | null){
     // add token to blacklist if not expired
-    api.post(userUrl + "blacklist" , {token: token});
+    api.post(userUrl + "/blacklist" , {token: token});
     
     // clear token & email from localStorage
     localStorage.clear();
@@ -30,7 +30,7 @@ class UserService {
   async login(userLogin: LoginDto) {
     try {
       
-      const response : {user: IUser ,access_token: string} = (await api.post(subUrl + "login", userLogin)).data; 
+      const response : {user: IUser ,access_token: string} = (await api.post(subUrl + "/login", userLogin)).data; 
 
       localStorage.setItem('token',response.access_token);
       localStorage.setItem('email',response.user.email);
@@ -49,7 +49,7 @@ class UserService {
   async register(userRegister: RegisterDto) {
 
     try {
-      const response = await api.post(subUrl + "register", userRegister); 
+      const response = await api.post(subUrl + "/register", userRegister); 
       
       return response.data;
 
@@ -63,6 +63,18 @@ class UserService {
   sendToken(confirmEmailDto: ConfirmEmailDto) {
     try {
       api.post('/confirm-email',confirmEmailDto);
+    } catch (error: any) {
+      return error.response.data;
+    }
+  }
+
+
+  async updateUser(id: string , user: Partial<IUser>) {
+    try {
+      const response = await api.put(`${userUrl}/${id}`,user);
+
+      return response.data;
+      
     } catch (error: any) {
       return error.response.data;
     }
