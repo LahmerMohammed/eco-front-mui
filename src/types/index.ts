@@ -39,6 +39,7 @@ export interface IUser {
   username: string,
   fullname: string,
   birthdate: Date,
+  phonenumber: string;
   roles: Role[],
   whishlist_counter: number;
 } 
