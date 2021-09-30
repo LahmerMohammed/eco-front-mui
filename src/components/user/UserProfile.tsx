@@ -11,11 +11,12 @@ import { Section } from './Section';
 import { IUser } from '../../types';
 import { RootState } from '../../redux/reducers';
 import { useSelector } from 'react-redux';
+import { userService } from '../../services/userService';
+import { LoadingButton } from '@mui/lab';
 
 
 interface UserProfileProps {
-  firstname: string,
-  lastname: string,
+  username: string,
   email: string,
   phonenumber: string,
   birthdate?: Date,
@@ -23,19 +24,18 @@ interface UserProfileProps {
 
 export function UserProfile() {
 
-  const classes = useStyles();
 
   const user: IUser = useSelector((state: RootState) => state.login.user);
 
   const [form, setForm] = React.useState<UserProfileProps>({
-    firstname: user.fullname.split(" ")[0],
-    lastname: user.fullname.split(" ")[1],
+    username: user.username,
     birthdate: user.birthdate,
     phonenumber: user.phonenumber,
     email: user.email
   });
 
   const [disabled, setDisabled] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
 
 
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,9 +63,18 @@ export function UserProfile() {
     })
   }
 
-  const handleSaveChanges = () => {
+  const handleSaveChanges = async () => {
+    setDisabled(true);
+    setLoading(true);
 
+    //const user = await userService.updateUser(form);
+    const user = {}
+    setForm({
+      ...form,
+      ...user,
+    });
 
+    setLoading(false);
 
   }
 
@@ -83,9 +92,9 @@ export function UserProfile() {
           <Grid item xs={12} md={6}>
             <TextField
               fullWidth
-              name="firstname"
-              label="Firstname"
-              value={form.firstname}
+              name="username"
+              label="Username"
+              value={form.username}
               onChange={handleInputChange}
               style={style.input}
               required
@@ -95,21 +104,6 @@ export function UserProfile() {
 
           </Grid>
           <Grid item xs={12} md={6}>
-            <TextField
-              fullWidth
-              name="lastname"
-              label="Lastname"
-              value={form.lastname}
-              onChange={handleInputChange}
-              style={style.input}
-              required
-              sx={{ ml: { md: '1.5rem' } }}
-              disabled={disabled}
-            />
-
-          </Grid>
-          <Grid item xs={12} md={6}>
-
             <TextField
               fullWidth
               name="email"
@@ -118,7 +112,7 @@ export function UserProfile() {
               onChange={handleInputChange}
               style={style.input}
               required
-              sx={{ mr: { md: '1.5rem' } }}
+              sx={{ ml: { md: '1.5rem' } }}
               disabled={disabled}
             />
 
@@ -131,28 +125,38 @@ export function UserProfile() {
               value={form.phonenumber}
               onChange={handleInputChange}
               style={style.input}
-              sx={{ ml: { md: '1.5rem' } }}
+              sx={{ mr: { md: '1.5rem' } }}
               disabled={disabled}
 
             />
 
           </Grid>
           <Grid item xs={12} md={6}>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <LocalizationProvider
+              dateAdapter={AdapterDateFns}>
               <DatePicker
                 label="birthdate"
                 value={form.birthdate}
                 onChange={handleDateChange}
-                renderInput={(params) => <TextField fullWidth {...params} name="birthdate" />}
+                renderInput={(params) => <TextField sx={{ ml: { md: '1.5rem' } }} fullWidth {...params} name="birthdate" />}
                 disabled={disabled}
               />
             </LocalizationProvider>
           </Grid>
         </Grid>
 
-        <Button size="large" variant="contained" type="submit" style={style.submitBtn}>
+        <LoadingButton
+          loadingIndicator={"saving ..."}
+          onClick={handleSaveChanges}
+          loading={loading}
+          size="large"
+          variant="contained"
+          type="submit"
+          style={style.submitBtn}
+          disabled={disabled}
+        >
           Save Changes
-        </Button>
+        </LoadingButton>
       </Paper >
 
     </Section>

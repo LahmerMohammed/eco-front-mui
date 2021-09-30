@@ -75,7 +75,7 @@ export function LoginPage(props: Props) {
       clearPassword();
 
     } else {
-      loginSuccess(res);
+      loginSuccess(res.user);
 
       history.push({
         pathname: '/'
