@@ -5,18 +5,12 @@ import {api, setToken} from './base'
 
 const subUrl = "auth"
 const userUrl = "users"
+
 class UserService {
-	async getUserByEmail(email: string) {
-		try {
-      
-      const response : IUser = (await api.get(userUrl + `/email/${email}`)).data; 
-
-      return response;
-
-    } catch (error: any) {
-
-      throw error;
-    }
+	
+  async getUserByEmail(email: string) {
+    const response  = await api.get(userUrl + `/email/${email}`); 
+    return response.data;
 	}
 
   logout(token: string | null){
@@ -69,9 +63,9 @@ class UserService {
   }
 
 
-  async updateUser(id: string , user: Partial<IUser>) {
+  async updateUser(user: Partial<IUser>) {
     try {
-      const response = await api.put(`${userUrl}/${id}`,user);
+      const response = await api.put(`${userUrl}`,user);
 
       return response.data;
       
