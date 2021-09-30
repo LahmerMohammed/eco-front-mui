@@ -38,6 +38,9 @@ function App() {
 		const email = localStorage.getItem('email');
 
 		if (token && email) {
+
+			setToken(token);
+
 			const user = await userService.getUserByEmail(email);
 
 			if (user) {
@@ -46,7 +49,7 @@ function App() {
 		}
 	}
 
-	React.useEffect(() => {
+	React.useLayoutEffect(() => {
 		onEnter();
 	}, []);
 

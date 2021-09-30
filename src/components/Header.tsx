@@ -25,7 +25,14 @@ export function Header(props: Props) {
 
   const { logout } = bindActionCreators(actionCreators, dispatch);
 
-  const loggedIn: boolean = useSelector((state: RootState) => state.login.loggedIn);
+  const { loggedIn, whishlist_counter } = useSelector((state: RootState) => {
+
+    return {
+      loggedIn: state.login.loggedIn,
+      whishlist_counter: state.login.user.whishlist_counter
+    }
+  });
+
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openMenu = Boolean(anchorEl);
@@ -113,12 +120,11 @@ export function Header(props: Props) {
           </Menu>
           <Grid sx={{ ml: { lg: '2rem' } }} item md={6} lg={3} xl={1} className={classes.item}>
             <IconButton size="medium">
-              <Badge badgeContent={3} color="secondary">
+              <Badge badgeContent={whishlist_counter} color="secondary">
                 <ShoppingBagOutlinedIcon fontSize="large" />
               </Badge>
             </IconButton>
           </Grid>
-
         </Grid>
       </Grid>
     </div>
