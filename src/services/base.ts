@@ -10,7 +10,7 @@ export const setToken = (token: string) => {
   
   api.interceptors.request.use((config) => {
     
-    config.headers.Authprization = token;
+    config.headers.Authorization = `Bearer ${token}`;
 
     return config;
 
