@@ -33,7 +33,6 @@ function App() {
 	const { loadUser } = bindActionCreators(actionCreators, dispatch);
 
 	const onEnter = async () => {
-
 		const token = localStorage.getItem('token');
 		const email = localStorage.getItem('email');
 
@@ -49,7 +48,7 @@ function App() {
 		}
 	}
 
-	React.useLayoutEffect(() => {
+	React.useEffect(() => {
 		onEnter();
 	}, []);
 
