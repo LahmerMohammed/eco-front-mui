@@ -9,8 +9,12 @@ const userUrl = "users"
 class UserService {
 	
   async getUserByEmail(email: string) {
-    const response  = await api.get(userUrl + `/email/${email}`); 
-    return response.data;
+    try{
+      const response  = await api.get(userUrl + `/email/${email}`); 
+      return response.data;
+    }catch(error: any){
+      return error.response.data;
+    }
 	}
 
   logout(token: string | null){
