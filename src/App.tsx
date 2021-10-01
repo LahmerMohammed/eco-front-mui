@@ -19,6 +19,7 @@ import { userService } from '../src/services/userService';
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "./redux/action-creators/login-actions";
+import { LoadingPage } from "./pages/LoadingPage";
 
 
 
@@ -26,13 +27,16 @@ import { actionCreators } from "./redux/action-creators/login-actions";
 function App() {
 	const classes = useStyles();
 
-	const [open, setOpen] = React.useState(false);
-
+	const [open, setOpen] = React.useState(true);
 	const dispatch = useDispatch();
-
 	const { loadUser } = bindActionCreators(actionCreators, dispatch);
 
-	const onEnter = async () => {
+
+	const [isTokenValid, setIsTokenValid] = React.useState(false);
+	const [isVerifyingToken, setIsVerifyingToken] = React.useState(true);
+
+	const verifyToken = React.useCallback(async () => {
+
 		const token = localStorage.getItem('token');
 		const email = localStorage.getItem('email');
 
@@ -42,20 +46,29 @@ function App() {
 
 			const user = await userService.getUserByEmail(email);
 
-			if (user) {
+			console.log(user);
+
+			if (!user || 'error' in user) {
+				//setIsTokenValid(false);
+			} else {
 				loadUser(user);
+				//setIsTokenValid(true);
 			}
 		}
-	}
+
+		setIsVerifyingToken(false);
+
+	}, []);
 
 	React.useEffect(() => {
-		onEnter();
+		verifyToken();
 	}, []);
 
 	return (
 		<>
 			<div className={classes.root}>
-				<MainRoutes />
+				{!isVerifyingToken && <MainRoutes />}
+				{isVerifyingToken && <LoadingPage open={open} />}
 			</div>
 		</>
 	);
