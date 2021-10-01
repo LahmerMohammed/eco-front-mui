@@ -46,8 +46,6 @@ function App() {
 
 			const user = await userService.getUserByEmail(email);
 
-			console.log(user);
-
 			if (!user || 'error' in user) {
 				//setIsTokenValid(false);
 			} else {
