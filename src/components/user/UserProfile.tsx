@@ -13,6 +13,7 @@ import { RootState } from '../../redux/reducers';
 import { useSelector } from 'react-redux';
 import { userService } from '../../services/userService';
 import { LoadingButton } from '@mui/lab';
+import { useHistory } from 'react-router-dom';
 
 
 interface UserProfileProps {
@@ -27,6 +28,8 @@ export function UserProfile() {
 
   const user: IUser = useSelector((state: RootState) => state.login.user);
 
+  const history = useHistory();
+
   const [form, setForm] = React.useState<UserProfileProps>({
     username: user.username,
     birthdate: user.birthdate,
@@ -34,12 +37,17 @@ export function UserProfile() {
     email: user.email
   });
 
+  const [hasChanged, setHasChanged] = React.useState(false);
+
   const [disabled, setDisabled] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
 
 
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evt.target;
+
+    if (!hasChanged)
+      setHasChanged(true);
 
     setForm({
       ...form,
@@ -57,6 +65,9 @@ export function UserProfile() {
     if (!date)
       return;
 
+    if (!hasChanged)
+      setHasChanged(true);
+
     setForm({
       ...form,
       birthdate: date,
@@ -64,11 +75,17 @@ export function UserProfile() {
   }
 
   const handleSaveChanges = async () => {
+
+    if (!hasChanged)
+      return;
+
     setDisabled(true);
     setLoading(true);
 
     //const user = await userService.updateUser(form);
-    const user = {}
+
+    history.go(0);
+
     setForm({
       ...form,
       ...user,
@@ -135,7 +152,7 @@ export function UserProfile() {
             <LocalizationProvider
               dateAdapter={AdapterDateFns}>
               <DatePicker
-                label="birthdate"
+                label="Birthdate"
                 value={form.birthdate}
                 onChange={handleDateChange}
                 renderInput={(params) => <TextField sx={{ ml: { md: '1.5rem' } }} fullWidth {...params} name="birthdate" />}
