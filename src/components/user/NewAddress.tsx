@@ -6,17 +6,26 @@ import { Input } from '../form/Input';
 import { Section } from './Section';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { useRouteMatch } from 'react-router';
+import { LoadingButton } from '@mui/lab';
+import { userService } from '../../services/userService';
+import { IAddress } from '../../types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/reducers';
 
 
 
 export function NewAddress() {
 
-  const classes = useStyles();
+  const [loading, setLoading] = React.useState(false);
 
-  const [form, setForm] = React.useState({
+  const user_id = useSelector((state: RootState) => {
+    return state.login.user.id;
+  });
+
+  const [form, setForm] = React.useState<Partial<IAddress>>({
     name: "",
-    address: "",
-    phonenumber: ""
+    address_line: "",
+    phonenumber: "",
   });
 
 
@@ -32,9 +41,15 @@ export function NewAddress() {
 
   const handleBackButton = () => { }
 
-  const { url } = useRouteMatch();
+  const handleAddAddress = async () => {
 
-  console.log("url" + url);
+    setLoading(true);
+
+    await userService.addAddress(form);
+
+    setLoading(false);
+
+  }
 
   return (
     <Section
@@ -64,9 +79,9 @@ export function NewAddress() {
           <Grid item xs={12} md={6}>
             <TextField
               fullWidth
-              name="address"
+              name="address_line"
               label="Address Line"
-              value={form.address}
+              value={form.address_line}
               onChange={handleInputChange}
               style={style.input}
               required
@@ -89,13 +104,17 @@ export function NewAddress() {
           </Grid>
         </Grid>
 
-        <Button
+        <LoadingButton
           size="large"
           variant="contained"
           type="submit"
-          style={style.submitBtn}>
+          style={style.submitBtn}
+          loading={loading}
+          loadingIndicator={"saving ..."}
+          onClick={handleAddAddress}
+        >
           Save Changes
-        </Button>
+        </LoadingButton>
       </Paper >
 
     </Section>
