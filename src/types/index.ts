@@ -37,9 +37,16 @@ export interface IUser {
   id: string,
   email: string,
   username: string,
-  fullname: string,
   birthdate: Date,
   phonenumber: string;
   roles: Role[],
   whishlist_counter: number;
 } 
+
+export interface IAddress {
+  id: string | null;
+  name: string;
+  address_line: string;
+  phonenumber: string;
+  user_id: string | null;
+}
