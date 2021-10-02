@@ -1,4 +1,4 @@
-import { IUser } from './../types/index';
+import { IUser, IAddress } from './../types/index';
 import { ConfirmEmailDto, LoginDto, RegisterDto, ResendConfirmEmailDto } from '../types';
 
 import {api, setToken} from './base' 
@@ -70,6 +70,28 @@ class UserService {
   async updateUser(user: Partial<IUser>) {
     try {
       const response = await api.put(`${userUrl}`,user);
+
+      return response.data;
+      
+    } catch (error: any) {
+      return error.response.data;
+    }
+  }
+
+  async addAddress(address: Partial<IAddress>) {
+    try {
+      const response = await api.post(`${userUrl}/address`,address);
+
+      return response.data;
+      
+    } catch (error: any) {
+      return error.response.data;
+    }
+  }
+
+  async updateAddress(address: IAddress) {
+    try {
+      const response = await api.put(`${userUrl}/address`,address);
 
       return response.data;
       
