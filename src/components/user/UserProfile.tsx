@@ -65,6 +65,7 @@ export function UserProfile() {
     if (!date)
       return;
 
+
     if (!hasChanged)
       setHasChanged(true);
 
@@ -82,9 +83,9 @@ export function UserProfile() {
     setDisabled(true);
     setLoading(true);
 
-    //const user = await userService.updateUser(form);
+    const user = await userService.updateUser(form);
 
-    history.go(0);
+    //history.go(0);
 
     setForm({
       ...form,
@@ -92,7 +93,6 @@ export function UserProfile() {
     });
 
     setLoading(false);
-
   }
 
   return (
