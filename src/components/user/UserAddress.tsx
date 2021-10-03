@@ -6,6 +6,8 @@ import { Address } from './Address';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Pagination from '@mui/material/Pagination';
 import { Section } from './Section';
+import { IAddress } from '../../types';
+import { userService } from '../../services/userService';
 
 
 interface Props {
@@ -46,6 +48,30 @@ export function UserAddress(props: Props) {
   const { } = props;
   const classes = useStyles(props);
 
+  const [addresses, setAddresses] = React.useState<Partial<IAddress[]>>([] as IAddress[]);
+
+  React.useEffect(() => {
+
+    const fetchData = async () => {
+      const response = await userService.getAddresses();
+
+      if ('error' in response) {
+      } else {
+        setAddresses(response);
+      }
+      console.log(response);
+    }
+
+    fetchData();
+
+  }, []);
+
+  const deleteAddress = (address_id: string) => {
+    const temp = addresses.filter((address) => address?.id != address_id);
+
+    setAddresses(temp);
+  }
+
   return (
     <Section
 
@@ -57,10 +83,10 @@ export function UserAddress(props: Props) {
 
     >
       {
-        addressExamples.map((address, index) => {
+        addresses.map((address, index) => {
           return (
-            <Grid item xs={12}>
-              <Address {...address} />
+            <Grid item key={index} xs={12}>
+              <Address deleteAddress={deleteAddress} {...address} />
             </Grid>)
         })
       }
