@@ -13,8 +13,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducers';
 
 
+interface Props {
+  title?: string;
+}
 
-export function NewAddress() {
+export function NewAddress(props: Props) {
 
   const [loading, setLoading] = React.useState(false);
 
