@@ -5,27 +5,34 @@ import { Box } from '@mui/system';
 import * as React from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { IAddress } from '../../types';
+import { userService } from '../../services/userService';
 
 interface Props {
-  fullname: string,
-  address: string,
-  phonenumber: string,
-
+  deleteAddress: (id: string) => void;
 }
 
-export function Address(props: Props) {
+export function Address(props: Partial<IAddress> & Props) {
 
-  const { } = props;
-  const classes = useStyles(props);
+  const { id, deleteAddress } = props;
+  const classes = useStyles();
+
+
+  const handleDelete = async () => {
+    if (id) {
+      await userService.deleteAddress(id);
+      deleteAddress(id);
+    }
+  }
 
   return (
     <Paper elevation={0} style={style.paper} className={classes.paper}>
       <Typography fontSize="18px">
-        {props.fullname}
+        {props.name}
       </Typography>
 
       <Typography fontSize="18px">
-        {props.address}
+        {props.address_line}
       </Typography>
 
       <Typography fontSize="18px">
@@ -37,7 +44,7 @@ export function Address(props: Props) {
           <EditIcon fontSize="large" />
         </IconButton>
         <IconButton>
-          <DeleteIcon fontSize="large" />
+          <DeleteIcon onClick={handleDelete} fontSize="large" />
         </IconButton>
       </Box>
     </Paper>
@@ -60,10 +67,6 @@ const style = {
 }
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
-
-  root: (props: Props) => ({
-
-  }),
   paper: {
     [theme.breakpoints.down('md')]: {
       justifyContent: 'center !important',
