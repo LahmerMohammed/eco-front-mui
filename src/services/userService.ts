@@ -100,6 +100,20 @@ class UserService {
     }
   }
 
+  async getAddresses() {
+    try {
+      const response = await api.get(`${userUrl}/address`);
+
+      return response.data;
+      
+    } catch (error: any) {
+      return error.response.data;
+    }
+  }
+
+  deleteAddress(address_id: string) {
+    api.delete(`${userUrl}/address/${address_id}`);
+  }
 
   resendConfirmationEmail(data: ResendConfirmEmailDto) {
     api.post('/resend-confirm-email' , data);
