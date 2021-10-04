@@ -18,11 +18,16 @@ interface Props {
 
 }
 
-function ErrorMessage(props: IError) {
-  if (!props.message)
+function ErrorMessage() {
+
+  const error = useSelector((state: RootState) => {
+    return state.login.error;
+  })
+
+  if (!error)
     return null;
 
-  return <Typography style={{ color: 'red' }}>{props.message}</Typography>
+  return <Typography style={{ color: 'red' }}>{error.error}</Typography>
 }
 
 export function LoginPage(props: Props) {
@@ -68,6 +73,7 @@ export function LoginPage(props: Props) {
     loginRequest();
     const res = await userService.login(form);
 
+    console.log(res);
 
     if ('error' in res) {
 
