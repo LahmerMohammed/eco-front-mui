@@ -11,6 +11,7 @@ import PrivateRoute from '../PrivateRoute';
 import React from 'react'
 import { VendorDashboard } from '../../components/vendor/VendorDashboard';
 import PublicRoute from '../PublicRoute';
+import { VendorProducts } from '../../components/vendor/VendorProducts';
 
 interface Props {
 
@@ -23,6 +24,7 @@ function VendorRoutes(props: Props) {
   return (
     <Switch>
       <PublicRoute restricted={false} path={`${path}/dashboard`} component={VendorDashboard} />
+      <PublicRoute restricted={false} path={`${path}/products`} component={VendorProducts} />
     </Switch>
   );
 }
