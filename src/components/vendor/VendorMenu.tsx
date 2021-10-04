@@ -8,6 +8,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AddIcon from '@mui/icons-material/Add';
 import { useRouteMatch } from 'react-router';
+import GridViewSharpIcon from '@mui/icons-material/GridViewSharp';
 import { UserDashboardItem } from '../user/UserDashboardItem';
 import Add from '@mui/icons-material/Add';
 
@@ -31,7 +32,7 @@ export function VendorMenu(props: Props) {
             <UserDashboardItem
               title="Dashboard"
               value={3}
-              icon={<FavoriteBorderOutlinedIcon fontSize="large" />}
+              icon={<GridViewSharpIcon fontSize="large" />}
               to={`${url}/dashboard`}
             />
             <UserDashboardItem
