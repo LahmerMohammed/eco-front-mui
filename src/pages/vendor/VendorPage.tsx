@@ -21,12 +21,12 @@ export function VendorPage(props: Props) {
   return (
     <Box style={style.root}>
       <Grid container className={classes.container}>
-        <Grid item container md={12} xl={2} justifyContent="flex-start" >
+        <Grid item container md={12} xl={3} justifyContent="flex-start" >
           <Grid item xs={12}>
             <VendorMenu />
           </Grid>
         </Grid>
-        <Grid item xs={12} lg={12} xl={10} sx={{ pl: '1rem' }}>
+        <Grid item xs={12} lg={12} xl={9} sx={{ pl: '1rem' }}>
           <VendorRoutes />
         </Grid>
       </Grid>
