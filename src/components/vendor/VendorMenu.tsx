@@ -11,6 +11,8 @@ import { useRouteMatch } from 'react-router';
 import GridViewSharpIcon from '@mui/icons-material/GridViewSharp';
 import { UserDashboardItem } from '../user/UserDashboardItem';
 import Add from '@mui/icons-material/Add';
+import { NewProductIcon } from '../../icons/NewProductIcon';
+import { ProductIcon } from '../../icons/ProductIcon';
 
 
 interface Props {
@@ -38,12 +40,12 @@ export function VendorMenu(props: Props) {
             <UserDashboardItem
               title="Products"
               value={300}
-              icon={<AddIcon fontSize="large" />}
+              icon={<ProductIcon fontSize="large" />}
               to={`${url}/products`}
             />
             <UserDashboardItem
               title="Add New Product"
-              icon={<ShoppingBagIcon fontSize="large" />}
+              icon={<NewProductIcon fontSize="large" />}
               to={`${url}/products/add`}
             />
             <UserDashboardItem
