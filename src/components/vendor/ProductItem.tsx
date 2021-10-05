@@ -28,30 +28,30 @@ export function ProductItem(props: Props) {
     <Link to={`${path}/${props.id}`} style={{ textDecoration: 'none' }}>
       <Paper elevation={0} style={style.paper} className={classes.paper}>
         <Grid container alignItems="center" justifyContent="space-between" wrap="wrap" rowGap="1rem">
-          <Grid item container xs={12} sm={6} wrap="wrap">
+          <Grid item container xs={12} sm={6} md={5} wrap="wrap">
             <Grid item container justifyContent="center" alignItems="center" xs={12} sm={2}>
               <Avatar src={props.image} style={{ backgroundColor: '#acacac' }} />
             </Grid>
-            <Grid item container alignItems="center" justifyContent="center" xs={12} sm={10} >
+            <Grid item className={classes.productName} container alignItems="center" xs={12} sm={10} >
               <Typography fontSize="18px">
                 {props.name}
               </Typography>
             </Grid>
           </Grid>
-          <Grid item container alignItems="center" justifyContent="center" xs={12} sm={1}>
+          <Grid item container alignItems="center" justifyContent="center" xs={12} sm={1} md={2}>
             <Typography>{props.stock_available}</Typography>
           </Grid>
-          <Grid item container alignItems="center" justifyContent="center" xs={12} sm={1}>
+          <Grid item container alignItems="center" justifyContent="center" xs={12} sm={1} md={2}>
             <Typography fontSize="18px">
               ${props.regular_price}
             </Typography>
           </Grid>
-          <Grid item container alignItems="center" justifyContent="center" xs={12} sm={1}>
+          <Grid item container alignItems="center" justifyContent="center" xs={12} sm={1} md={2}>
             <Typography fontSize="18px">
               ${props.sale_price}
             </Typography>
           </Grid>
-          <Grid item container justifyContent="flex-end" xs={12} sm={1} md={2} xl={1}>
+          <Grid item container justifyContent="flex-end" xs={12} sm={1} md={1} xl={1}>
             <IconButton >
               <ArrowForwardIcon fontSize="large" />
             </IconButton>
@@ -84,9 +84,14 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   }),
   paper: {
     [theme.breakpoints.down('md')]: {
-      justifyContent: 'center !important',
+      justifyContent: 'center',
       textAlign: 'center',
       paddingTop: '1rem'
+    }
+  },
+  productName: {
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'center',
     }
   }
 }));
