@@ -70,8 +70,7 @@ const style = {
     backgroundColor: 'white',
     borderRadius: '12px',
     cursor: 'pointer',
-    paddingLeft: '2rem',
-    paddingRight: '2rem',
+    padding: '10px 2rem',
     flexWrap: 'wrap' as string,
     rowGap: '3rem'
   } as React.CSSProperties
