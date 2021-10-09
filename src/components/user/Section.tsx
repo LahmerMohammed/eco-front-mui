@@ -17,7 +17,7 @@ interface Props {
 }
 
 
-const RedButton = styled(Button)<ButtonProps>(({ theme }) => ({
+export const RedButton = styled(Button)<ButtonProps>(({ theme }) => ({
   backgroundColor: '#f9e6e9',
   color: '#d23f57',
   '&:hover': {
