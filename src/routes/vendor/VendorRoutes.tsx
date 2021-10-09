@@ -12,6 +12,7 @@ import React from 'react'
 import { VendorDashboard } from '../../components/vendor/VendorDashboard';
 import PublicRoute from '../PublicRoute';
 import { VendorProducts } from '../../components/vendor/VendorProducts';
+import { ProductForm } from '../../components/vendor/ProductForm';
 
 interface Props {
 
@@ -24,7 +25,9 @@ function VendorRoutes(props: Props) {
   return (
     <Switch>
       <PublicRoute restricted={false} path={`${path}/dashboard`} component={VendorDashboard} />
+      <PublicRoute exact restricted={false} path={`${path}/products/:id`} component={ProductForm} />
       <PublicRoute restricted={false} path={`${path}/products`} component={VendorProducts} />
+      <PublicRoute restricted={false} path={`${path}/add-product`} component={ProductForm} />
     </Switch>
   );
 }
