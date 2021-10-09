@@ -59,14 +59,15 @@ function App() {
 	}, []);
 
 	React.useEffect(() => {
-		verifyToken();
+		//verifyToken();
 	}, []);
 
 	return (
 		<>
 			<div className={classes.root}>
-				{!isVerifyingToken && <MainRoutes />}
-				{isVerifyingToken && <LoadingPage open={open} />}
+				{/* {!isVerifyingToken && <MainRoutes />}
+				{isVerifyingToken && <LoadingPage open={open} />} */}
+				<MainRoutes />
 			</div>
 		</>
 	);
