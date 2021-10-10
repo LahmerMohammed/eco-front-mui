@@ -13,6 +13,7 @@ import { VendorDashboard } from '../../components/vendor/VendorDashboard';
 import PublicRoute from '../PublicRoute';
 import { VendorProducts } from '../../components/vendor/VendorProducts';
 import { ProductForm } from '../../components/vendor/ProductForm';
+import { VendorAccount } from '../../components/vendor/VendorAccount';
 
 interface Props {
 
@@ -28,6 +29,8 @@ function VendorRoutes(props: Props) {
       <PublicRoute exact restricted={false} path={`${path}/products/:id`} component={ProductForm} />
       <PublicRoute restricted={false} path={`${path}/products`} component={VendorProducts} />
       <PublicRoute restricted={false} path={`${path}/add-product`} component={ProductForm} />
+      <PublicRoute restricted={false} path={`${path}/orders`} component={UserOrder} />
+      <PublicRoute restricted={false} path={`${path}/account-settings`} component={VendorAccount} />
     </Switch>
   );
 }
