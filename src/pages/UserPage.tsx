@@ -3,14 +3,7 @@ import { Box, Container, Grid, Theme } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
 import { UserMenu } from '../components/user/UserMenu';
-import { UserProfile } from '../components/user/UserProfile';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { UserAddress } from '../components/user/UserAddress';
-import { PaymentMethods } from '../components/user/PaymentMethods';
-import { NewAddress } from '../components/user/NewAddress'
-import { NewPaymentMethode } from '../components/user/NewPaymentMethode';
-import { UserOrder } from '../components/user/UserOrder';
-import { UserWhishlist } from '../components/user/UserWhishlist';
+
 import UserRoutes from '../routes/user/UserRoutes';
 
 

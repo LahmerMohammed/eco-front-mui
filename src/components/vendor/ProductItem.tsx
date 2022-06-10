@@ -4,8 +4,7 @@ import { Theme } from '@mui/material/styles';
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { useRouteMatch } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 interface Props {
   id: string;
@@ -21,8 +20,9 @@ export function ProductItem(props: Props) {
 
   const { } = props;
   const classes = useStyles(props);
-  const { path } = useRouteMatch();
 
+  //const location = useLocation();
+  const path = ""/* location.pathname */;
 
   return (
     <Link to={`${path}/${props.id}`} style={{ textDecoration: 'none' }}>

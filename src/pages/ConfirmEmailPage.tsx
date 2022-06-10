@@ -2,8 +2,8 @@
 import { Button, Grid, Paper, Theme, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
-import { ActionButton } from '../components/form/FormButton';
-import { useHistory, useLocation } from 'react-router';
+import { useLocation } from 'react-router-dom';
+import { ActionButton } from '../components/shared/FormButton';
 import { userService } from '../services/userService';
 import { ResendConfirmEmailDto } from '../types'
 
@@ -25,18 +25,21 @@ interface ILocationState {
 
 
 
-export function ConfirmEmailPage(props: Props) {
+export function ConfirmEmailPage() {
 
-  const { } = props;
-  const classes = useStyles(props);
+  const classes = useStyles();
 
   const [email, setEmail] = React.useState("");
 
-  const location = useLocation<ILocationState>();
+  const location: any = useLocation();
 
-  React.useEffect(() => {
-    setEmail(location.state.email);
-  }, [location]);
+  /* React.useEffect(() => {
+
+    const state = location.state;
+    const email = state.email;
+    setEmail(email);
+
+  }, [location]); */
 
 
   const handleRensedConfirmation = () => {
@@ -84,7 +87,7 @@ export function ConfirmEmailPage(props: Props) {
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
 
-  root: (props: Props) => ({
+  root: (/* props: Props */) => ({
     height: 'inherit'
   }),
   content: {

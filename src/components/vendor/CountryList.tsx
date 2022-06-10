@@ -19,7 +19,7 @@ export function CountryList(props: Props) {
       {
         countries.map((country, index) => {
           return (
-            <CountryItem {...country} />
+            <CountryItem key={index} {...country} />
           )
         })
       }

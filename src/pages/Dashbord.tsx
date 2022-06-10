@@ -2,7 +2,7 @@
 import { Theme } from "@mui/material/styles";
 import { createStyles, makeStyles } from "@mui/styles";
 import * as React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Header } from "../components/Header";
 import { NavBar } from "../components/NavBar";
 import { TopHeader } from "../components/TopHeader";

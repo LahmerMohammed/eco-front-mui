@@ -1,15 +1,12 @@
-import { Redirect, Route, RouteProps, useHistory } from "react-router-dom";
 import React from 'react'
 import { setToken } from "../services/base";
 import { userService } from "../services/userService";
 import { loadUser } from "../redux/action-creators/login-actions";
 import { isLogin } from "./utils";
+import { Route, RouteProps, Navigate, Outlet } from 'react-router-dom';
 
 
 interface IPublicRouteProps extends RouteProps {
-  // tslint:disable-next-line:no-any
-  component?: any;
-
   // tslint:disable-next-line:no-any
   children?: any;
 
@@ -22,20 +19,11 @@ interface IPublicRouteProps extends RouteProps {
 
 const PublicRoute = (props: IPublicRouteProps) => {
 
-  const { component: Component, children, restricted, ...rest } = props;
+  const { children, restricted } = props;
+  console.log("public router");
 
-  return (
-    <Route
-      {...rest}
-      render={(props) => {
-        return isLogin() && restricted ? <Redirect to={{ pathname: '/' }} /> : (
-          Component ? (<Component  {...props} />) : (children)
-        )
-      }}
-    />
-  )
+  return isLogin() && restricted ? <Navigate to="/" replace /> : children;
 
 }
-
 
 export default PublicRoute;

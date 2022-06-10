@@ -27,7 +27,7 @@ const MSelect = (props: SelectProps) => {
       input={<Input disableUnderline={true} />}
       style={{ color: 'white' }}
       variant="standard">
-      {options.map((option) => <MenuItem value={option}>{option}</MenuItem>)}
+      {options.map((option, index) => <MenuItem key={index} value={option}>{option}</MenuItem>)}
     </Select>
   );
 }

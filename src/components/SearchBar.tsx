@@ -33,7 +33,7 @@ export function SearchBar(props: Props) {
         defaultValue={categories[0]}
         className={classes.select}
       >
-        {categories.map((category) => <MenuItem value={category} >{category}</MenuItem>)}
+        {categories.map((category, index) => <MenuItem key={index} value={category} >{category}</MenuItem>)}
       </Select>
     </div>
   );

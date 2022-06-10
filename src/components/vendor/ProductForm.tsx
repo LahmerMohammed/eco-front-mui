@@ -1,43 +1,63 @@
 // prettier-ignore
 import { Category } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
-import { Divider, FormControl, Grid, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
+import {
+  Autocomplete, Divider, FormControl, Grid, InputLabel,
+  MenuItem, Paper, Select, SelectChangeEvent, TextField, Typography, Chip, Avatar, Dialog
+} from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import { Theme } from '@mui/system';
 import * as React from 'react';
 import { useDropzone } from 'react-dropzone';
-import { useRouteMatch } from 'react-router';
+import { useLocation } from 'react-router-dom';
+import { isUnionTypeNode } from 'typescript';
 import { ProductIcon } from '../../icons/ProductIcon';
+import { vendorService } from '../../services/vendor.service';
+import { ICreateProductDTO, IProuctDTO } from '../../types/product.create.dto';
 import { ProductCategory } from '../../types/ProductCategory';
+import { ImageCardList } from '../shared/ImageCard';
 import { RedButton, Section } from '../user/Section';
 
 
 interface Props { }
 
-const initState = {
-  id: null,
+const initState: IProuctDTO = {
+  id: '',
   name: '',
-  category: "",
-  file: '',
   description: '',
-  stock: '',
-  tags: '',
-  regular_price: null,
-  sale_price: null,
-
+  regular_price: 0,
+  sale_price: 0,
+  stock: 0,
+  category: '',
+  tags: [] as Array<string>,
 }
 
 export function ProductForm(props: Props) {
 
   const classes = useStyles(props);
-  const { url } = useRouteMatch();
+
+  //const location = useLocation();
+  const path = ""/* location.pathname */;
+
   const product_id = null;
   const [formData, setFormData] = React.useState({ ...initState, id: product_id });
+  const [images, setImages] = React.useState([] as Array<File>)
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [disabled, setDisabled] = React.useState(false);
+  const [showImage, setShowImage] = React.useState(false);
+  const [src, setSrc] = React.useState("");
 
-  const handleSaveChanges = () => {
+
+  const handleSaveChanges = async (evt: React.MouseEvent<HTMLElement>) => {
+    evt.preventDefault();
+    setLoading(true);
+    const data: ICreateProductDTO = { product_dto: formData, images };
+
+    const res = await vendorService.addProduct(data);
+
+    console.log(res);
+    setLoading(false);
 
   }
 
@@ -58,6 +78,13 @@ export function ProductForm(props: Props) {
     });
   }
 
+  const handleTagsInputChange = (evt: React.SyntheticEvent, newValue: Array<string>) => {
+    setFormData({
+      ...formData,
+      tags: [...newValue],
+    });
+  }
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -67,11 +94,37 @@ export function ProductForm(props: Props) {
   };
 
 
-  const onDrop = React.useCallback((acceptedFiles: any) => {
-    console.log("dropped");
-  }, []);
+  const onDrop = (acceptedFiles: Array<File>) => {
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+    handleImageListUpdate(acceptedFiles);
+
+  };
+
+  const handleImageListUpdate = (newImages: Array<File>) => {
+    if ((images.length + newImages.length) <= 5) {
+      let temp_state = [...images, ...newImages];
+      setImages(temp_state);
+    }
+  }
+
+
+  const handleImageDelete = (file_name: string) => {
+    let temp_state = images.filter((image: File) => {
+
+      return image.name != file_name;
+    })
+
+    setImages(temp_state);
+  }
+
+  const handleImageOnClick = (src: string) => {
+    setSrc(src);
+    setShowImage(true);
+  }
+
+
+  const { getRootProps, getInputProps,
+    isDragActive } = useDropzone({ maxFiles: 5, onDrop, accept: { 'image/*': [] } });
 
   return (
     <Section
@@ -109,8 +162,8 @@ export function ProductForm(props: Props) {
                     onChange={handleSelectChange}
                     fullWidth
                   >
-                    {Object.keys(ProductCategory).map((category => (
-                      <MenuItem value={category}> {category} </MenuItem>
+                    {Object.keys(ProductCategory).map(((category, index) => (
+                      <MenuItem key={index} value={category}> {category} </MenuItem>
                     )))}
 
                   </Select>
@@ -142,6 +195,7 @@ export function ProductForm(props: Props) {
                 </Typography>
               </Grid>
             </Grid>
+            <ImageCardList images={images} onDelete={handleImageDelete} onClick={handleImageOnClick} />
             <Grid item xs={12}>
               <TextField
                 fullWidth
@@ -162,6 +216,7 @@ export function ProductForm(props: Props) {
                   name="stock"
                   value={formData.stock}
                   type="number"
+                  inputProps={{ min: 0 }}
                   required
                   fullWidth
                   onChange={handleInputChange}
@@ -169,14 +224,30 @@ export function ProductForm(props: Props) {
                 />
               </Grid>
               <Grid item xs={12} md={6} >
-                <TextField
-                  label="Tags"
-                  name="tags"
+                <Autocomplete
+                  multiple
+                  id="tags"
+                  onChange={handleTagsInputChange}
                   value={formData.tags}
-                  required
-                  fullWidth
-                  onChange={handleInputChange}
+                  options={formData.tags.map((tag) => tag)}
+                  freeSolo
+                  renderTags={(value: readonly string[], getTagProps) =>
+                    value.map((option, index) => (
+                      <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                    ))
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      placeholder="tags"
+                      label="Tags"
+                      name="tags"
+                      required
+                      fullWidth
+                    />
+                  )}
                 />
+
               </Grid>
               <Grid item xs={12} md={6} >
                 <TextField
@@ -184,6 +255,7 @@ export function ProductForm(props: Props) {
                   name="regular_price"
                   type="number"
                   value={formData.regular_price}
+                  inputProps={{ min: 0 }}
                   fullWidth
                   required
                   onChange={handleInputChange}
@@ -191,10 +263,11 @@ export function ProductForm(props: Props) {
               </Grid>
               <Grid item xs={12} md={6} >
                 <TextField
-                  label="Stock"
+                  label="Sale Price"
                   name="sale_price"
                   type="number"
                   value={formData.sale_price}
+                  inputProps={{ min: 0 }}
                   fullWidth
                   required
                   onChange={handleInputChange}
@@ -217,11 +290,22 @@ export function ProductForm(props: Props) {
             </Grid>
           </Grid>
         </Paper>
+        <Dialog
+          open={showImage}
+          onClose={() => setShowImage(false)}
+          sx={{ zIndex: 4000 }}>
+          <img
+            src={src}
+          />
+        </Dialog>
       </Grid >
 
     </Section >
   );
 }
+
+
+
 
 
 const style = {
@@ -249,7 +333,8 @@ const style = {
   } as React.CSSProperties,
   submitBtn: {
     backgroundColor: 'rgb(210, 63, 87)',
-    marginTop: '2rem'
+    marginTop: '2rem',
+    whiteSpace: 'nowrap'
   } as React.CSSProperties,
 }
 
@@ -281,3 +366,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   stock: {}
 }));
+
+
+
+

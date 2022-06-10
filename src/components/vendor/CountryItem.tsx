@@ -8,6 +8,7 @@ interface Props {
   image: string;
   name: string;
   amount: number;
+  key: number;
 }
 
 export function CountryItem(props: Props) {
@@ -16,7 +17,7 @@ export function CountryItem(props: Props) {
   const classes = useStyles(props);
 
   return (
-    <Grid container className={classes.container}>
+    <Grid key={props.key} container className={classes.container}>
       <Grid item container xs={6} sm={8} >
         <Grid item xs={6} sm={3} md={2} lg={4}>
           <Avatar src={props.image} />

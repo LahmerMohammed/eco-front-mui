@@ -1,4 +1,4 @@
-import { Redirect, Route, RouteProps } from "react-router-dom";
+import { Navigate, Outlet, Route, RouteProps } from "react-router-dom";
 import React from 'react'
 import { isLogin } from "./utils";
 
@@ -17,19 +17,9 @@ interface IPrivateRouteProps extends RouteProps {
 
 const PrivateRoute = (props: IPrivateRouteProps) => {
 
-  const { component: Component, children, ...rest } = props;
-
-  return (
-    <Route
-      {...rest}
-
-      render={props => {
-        return isLogin() ? (
-          Component ? (<Component  {...props} />) : (children)
-        ) : <Redirect to={{ pathname: '/login' }} />
-      }}
-    />
-  )
+  const { children } = props;
+  console.log("private router");
+  return isLogin() ? children : <Navigate to='/login' replace />;
 
 }
 

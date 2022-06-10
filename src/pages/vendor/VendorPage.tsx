@@ -17,7 +17,6 @@ export function VendorPage(props: Props) {
 
   const { } = props;
   const classes = useStyles();
-
   return (
     <Box style={style.root}>
       <Grid container className={classes.container}>
@@ -26,7 +25,7 @@ export function VendorPage(props: Props) {
             <VendorMenu />
           </Grid>
         </Grid>
-        <Grid item xs={12} lg={12} xl={9} sx={{ pl: '1rem' }}>
+        <Grid item xs={12} lg={12} xl={9} className={classes.page}>
           <VendorRoutes />
         </Grid>
       </Grid>
@@ -60,6 +59,11 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     width: '100%',
     [theme.breakpoints.down('md')]: {
       padding: '2rem'
+    }
+  },
+  page: {
+    [theme.breakpoints.up('xl')]: {
+      paddingLeft: '1.5rem'
     }
   }
 }));

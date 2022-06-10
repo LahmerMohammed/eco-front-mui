@@ -59,7 +59,7 @@ export function PaymentMethods(props: Props) {
       {
         examples.map((pmethode, index) => {
           return (
-            <Grid item xs={12}>
+            <Grid key={index} item xs={12}>
               <PaymentMethode {...pmethode} />
             </Grid>)
         })

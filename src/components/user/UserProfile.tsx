@@ -6,14 +6,14 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import * as React from 'react';
-import { Input } from '../form/Input';
+import { Input } from '../shared/Input';
 import { Section } from './Section';
 import { IUser } from '../../types';
 import { RootState } from '../../redux/reducers';
 import { useSelector } from 'react-redux';
 import { userService } from '../../services/userService';
 import { LoadingButton } from '@mui/lab';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 interface UserProfileProps {
@@ -28,7 +28,7 @@ export function UserProfile() {
 
   const user: IUser = useSelector((state: RootState) => state.login.user);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [form, setForm] = React.useState<UserProfileProps>({
     username: user.username,

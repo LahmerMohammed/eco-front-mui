@@ -1,18 +1,18 @@
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { createStore, applyMiddleware } from "redux"
+//import { composeWithDevTools } from 'redux-devtools/extension';
+import { applyMiddleware } from "redux"
 import rootReducer from '../reducers'
 import thunk from 'redux-thunk'
-import { compose } from "@reduxjs/toolkit";
+import { compose, configureStore } from "@reduxjs/toolkit";
 
 
+// TODO : enable redux dev tool
 
-
-export const store = createStore(
-  rootReducer,
-  composeWithDevTools(
+export const store = configureStore({
+  reducer: rootReducer,
+  /* composeWithDevTools(
     applyMiddleware(thunk)
-  )
-);
+  ) */
+});
 
 
 

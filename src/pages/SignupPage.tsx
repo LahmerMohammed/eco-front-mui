@@ -1,10 +1,10 @@
 import { Box, Divider, Link, Paper, Theme, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
-import { Redirect, useHistory } from 'react-router';
-import { ActionButton, FacebookButton, GoogleButton } from '../components/form/FormButton';
-import { Input } from '../components/form/Input';
-import { InputPassword } from '../components/form/InputPassword';
+import { useNavigate } from 'react-router-dom';
+import { ActionButton, FacebookButton, GoogleButton } from '../components/shared/FormButton';
+import { Input } from '../components/shared/Input';
+import { InputPassword } from '../components/shared/InputPassword';
 import { ForgetPassword } from '../models/MRegister';
 import { userService } from '../services/userService';
 
@@ -25,7 +25,7 @@ export function SignupPage(props: Props) {
   const { } = props;
   const classes = useStyles();
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [error, setError] = React.useState({
     show: false,
@@ -57,8 +57,9 @@ export function SignupPage(props: Props) {
 
     const res = await userService.register(form);
 
+    console.log(res);
 
-    if ('error' in res) {
+    if (res.status == "error") {
 
       setError({
         message: res.message,
@@ -67,12 +68,7 @@ export function SignupPage(props: Props) {
     } else {
 
 
-      history.push({
-        pathname: 'confirm-email',
-        state: {
-          email: form.email,
-        }
-      });
+      navigate('/confirm-email', { state: { email: form.email } });
 
     }
   }
@@ -89,7 +85,7 @@ export function SignupPage(props: Props) {
             Please fill all the fields to continue
           </Typography>
         </Box>
-        <Box component="form" onSubmit={handleSubmit}>
+        <Box component="form" onSubmit={handleSubmit} >
 
           <Input
             name="email"
@@ -98,7 +94,6 @@ export function SignupPage(props: Props) {
             label="Email"
             value={form.email}
             onChange={handleInputChange}
-
           />
 
           <Input
@@ -142,7 +137,7 @@ export function SignupPage(props: Props) {
         <GoogleButton onClick={() => { }} />
         <Box component="div" className={classes.signup}>
           <p>Already have an Account?{" "}</p>
-          <Link color="#000" href="#">Login</Link>
+          <Link color="#000" href={`${window.location.origin}/login`}>Login</Link>
         </Box>
       </Paper>
     </Box>
@@ -158,12 +153,15 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     width: '100vw',
     paddingTop: '2%',
     paddingBottom: '2%',
-    overflowY: 'hidden'
+    overflowY: 'hidden',
+
   },
   container: {
     padding: '2rem',
     borderRadius: '20px !important',
-    boxShadow: '0px 8px 45px rgba(3, 0, 71, 0.09)'
+    boxShadow: '0px 8px 45px rgba(3, 0, 71, 0.09)',
+    overflowX: 'hidden',
+    maxWidth: '100%'
   },
   signup: {
     display: 'flex',

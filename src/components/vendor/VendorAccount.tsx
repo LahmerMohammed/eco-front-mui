@@ -135,7 +135,8 @@ export function VendorAccount(props: Props) {
 const style = {
   submitBtn: {
     backgroundColor: 'rgb(210, 63, 87)',
-    marginTop: '2rem'
+    marginTop: '2rem',
+
   } as React.CSSProperties,
 }
 

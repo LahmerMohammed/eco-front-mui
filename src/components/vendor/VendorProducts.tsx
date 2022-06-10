@@ -57,30 +57,35 @@ function ProductListHeader() {
       <Grid container alignItems="center" justifyContent="space-between" wrap="wrap" rowGap="1rem">
         <Grid item container xs={12} sm={6} md={5} wrap="wrap" justifyContent="flex-end">
           <Grid item className={classes.productName} container alignItems="center" xs={12} sm={10} >
-            <Typography style={{ color: 'rgb(125, 135, 156)' }} fontSize="1.5rem">
-              Name
-            </Typography>
+            <Title title="Name" />
           </Grid>
         </Grid>
-        <Grid item container alignItems="center" justifyContent="center" xs={12} sm={1} md={2}>
-          <Typography style={{ color: 'rgb(125, 135, 156)' }} fontSize="1.5rem">Stock</Typography>
-        </Grid>
-        <Grid item container alignItems="center" justifyContent="center" xs={12} sm={1} md={2}>
-          <Typography style={{ color: 'rgb(125, 135, 156)' }} fontSize="1.5rem">
-            Regular Price
-          </Typography>
-        </Grid>
-        <Grid item container alignItems="center" justifyContent="center" xs={12} sm={1} md={2}>
-          <Typography style={{ color: 'rgb(125, 135, 156)' }} fontSize="1.5rem">
-            Sale Price
-          </Typography>
-        </Grid>
+        <HeaderTitle title="Stock" />
+        <HeaderTitle title="Regular Price" />
+        <HeaderTitle title="Sale Price" />
         <Grid item container justifyContent="flex-end" xs={12} sm={1} md={1} xl={1}>
 
         </Grid>
       </Grid>
     </div>
   )
+}
+
+
+function HeaderTitle({ title }: { title: string }) {
+  return (<Grid item container alignItems="center" justifyContent="center" xs={12} sm={1} md={2}>
+    <Title title={title} />
+  </Grid>
+  );
+}
+
+
+function Title({ title }: { title: string }) {
+  return (
+    <Typography style={{ color: 'rgb(125, 135, 156)' }} fontSize="1.3rem">
+      {title}
+    </Typography>
+  );
 }
 
 
@@ -101,7 +106,7 @@ export function VendorProducts(props: Props) {
       {
         products.map((product, index) => {
           return (
-            <Grid item xs={12} xl={11}>
+            <Grid key={index} item xs={12} xl={11}>
               <ProductItem {...product} />
             </Grid>
           )
@@ -145,5 +150,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     [theme.breakpoints.down('sm')]: {
       justifyContent: 'center',
     }
+  },
+  listTypography: {
+    color: 'rgb(125, 135, 156)',
+    fontSize: "1.5rem"
   }
 }));

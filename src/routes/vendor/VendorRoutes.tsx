@@ -1,4 +1,3 @@
-import { Switch, useRouteMatch } from 'react-router';
 import { NewAddress } from '../../components/user/NewAddress';
 import { NewPaymentMethode } from '../../components/user/NewPaymentMethode';
 import { PaymentMethods } from '../../components/user/PaymentMethods';
@@ -14,26 +13,43 @@ import PublicRoute from '../PublicRoute';
 import { VendorProducts } from '../../components/vendor/VendorProducts';
 import { ProductForm } from '../../components/vendor/ProductForm';
 import { VendorAccount } from '../../components/vendor/VendorAccount';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 interface Props {
 
 }
 
+const routes = [
+  { path: "dashboard", children: <VendorDashboard /> },
+  { path: "products/:id*", children: <ProductForm /> },
+  { path: "products", children: <VendorProducts /> },
+  { path: "products/add", children: <ProductForm /> },
+  { path: "orders", children: <UserOrder /> },
+  { path: "account-settings`", children: <VendorAccount /> },
+]
+
 function VendorRoutes(props: Props) {
 
-  const { path } = useRouteMatch();
+  console.log(window.location.pathname);
 
   return (
-    <Switch>
-      <PublicRoute restricted={false} path={`${path}/dashboard`} component={VendorDashboard} />
-      <PublicRoute exact restricted={false} path={`${path}/products/:id`} component={ProductForm} />
-      <PublicRoute restricted={false} path={`${path}/products`} component={VendorProducts} />
-      <PublicRoute restricted={false} path={`${path}/add-product`} component={ProductForm} />
-      <PublicRoute restricted={false} path={`${path}/orders`} component={UserOrder} />
-      <PublicRoute restricted={false} path={`${path}/account-settings`} component={VendorAccount} />
-    </Switch>
+    <Routes>
+      {
+        routes.map((route, index) => {
+          const { children, path } = route;
+          return (
+            <Route
+              key={index}
+              path={`${path}`}
+              element={
+                <PublicRoute restricted={false} children={children} />
+              }
+            />
+          )
+        })
+      }
+    </Routes>
   );
 }
-
 
 export default VendorRoutes;

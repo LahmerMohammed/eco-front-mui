@@ -58,7 +58,7 @@ class UserService {
   }
 
 
-  sendToken(confirmEmailDto: ConfirmEmailDto) {
+  validateEmail(confirmEmailDto: ConfirmEmailDto) {
     try {
       api.post('/confirm-email',confirmEmailDto);
     } catch (error: any) {

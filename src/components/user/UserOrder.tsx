@@ -84,7 +84,7 @@ export function UserOrder(props: Props) {
       {
         orderExamples.map((order, index) => {
           return (
-            <Grid item xs={12}>
+            <Grid key={index} item xs={12}>
               <Order {...order} />
             </Grid>)
         })

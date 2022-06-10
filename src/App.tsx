@@ -2,7 +2,7 @@
 import { Theme } from "@mui/material/styles";
 import { createStyles, makeStyles } from "@mui/styles";
 import * as React from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { Header } from "./components/Header";
 import { NavBar } from "./components/NavBar";
 import { TopHeader } from "./components/TopHeader";
@@ -32,35 +32,35 @@ function App() {
 	const { loadUser } = bindActionCreators(actionCreators, dispatch);
 
 
-	const [isTokenValid, setIsTokenValid] = React.useState(false);
-	const [isVerifyingToken, setIsVerifyingToken] = React.useState(true);
-
-	const verifyToken = React.useCallback(async () => {
-
-		const token = localStorage.getItem('token');
-		const email = localStorage.getItem('email');
-
-		if (token && email) {
-
-			setToken(token);
-
-			const user = await userService.getUserByEmail(email);
-
-			if (!user || 'error' in user) {
-				//setIsTokenValid(false);
-			} else {
-				loadUser(user);
-				//setIsTokenValid(true);
+	/* 	const [isTokenValid, setIsTokenValid] = React.useState(false);
+		const [isVerifyingToken, setIsVerifyingToken] = React.useState(true);
+	
+		const verifyToken = React.useCallback(async () => {
+	
+			const token = localStorage.getItem('token');
+			const email = localStorage.getItem('email');
+	
+			if (token && email) {
+	
+				setToken(token);
+	
+				const user = await userService.getUserByEmail(email);
+	
+				if (!user || 'error' in user) {
+					setIsTokenValid(false);
+				} else {
+					loadUser(user);
+					setIsTokenValid(true);
+				}
 			}
-		}
-
-		setIsVerifyingToken(false);
-
-	}, []);
-
-	React.useEffect(() => {
-		//verifyToken();
-	}, []);
+	
+			setIsVerifyingToken(false);
+	
+		}, []);
+	
+		React.useEffect(() => {
+			verifyToken();
+		}, []); */
 
 	return (
 		<>

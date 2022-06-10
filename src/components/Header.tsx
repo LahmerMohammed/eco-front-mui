@@ -5,12 +5,12 @@ import * as React from 'react';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { SearchBar } from './SearchBar';
-import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/reducers';
 import { userService } from '../services/userService';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../redux/action-creators/login-actions';
+import { useNavigate } from 'react-router-dom';
 
 
 interface Props {
@@ -19,7 +19,7 @@ interface Props {
 
 export function Header(props: Props) {
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -61,9 +61,7 @@ export function Header(props: Props) {
 
     if (id == "profile") {
 
-      history.push({
-        pathname: '/user/profile'
-      });
+      navigate('/user/profile');
 
     } else if (id == "logout") {
 
@@ -71,10 +69,7 @@ export function Header(props: Props) {
       const token = localStorage.getItem('token');
 
       userService.logout(token);
-
-      history.push({
-        pathname: '/'
-      });
+      navigate('/');
     }
 
     CloseMenu();

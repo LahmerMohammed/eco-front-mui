@@ -15,7 +15,7 @@ declare module '@mui/styles/defaultTheme' {
 
 const theme = createTheme({
   typography: {
-    fontSize: 15
+    fontSize: 13
   }
 });
 

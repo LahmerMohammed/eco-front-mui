@@ -1,4 +1,4 @@
-import { Router } from 'react-typesafe-routes';
+/* import { Router } from 'react-typesafe-routes';
 import { LoginPage } from './pages/LoginPage';
 
 // Read more about writing a middleware or add query parameter etc.
@@ -10,3 +10,6 @@ export const router = Router(route => ({
 	}),
 
 }));
+ */
+
+export { };

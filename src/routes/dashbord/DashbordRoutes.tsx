@@ -1,6 +1,6 @@
 // prettier-ignore
 import * as React from 'react';
-import { Switch, useRouteMatch } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { LoginPage } from '../../pages';
 import { ConfirmEmailPage } from '../../pages/ConfirmEmailPage';
 import { HomePage } from '../../pages/HomePage';
@@ -14,15 +14,33 @@ interface Props {
 
 }
 
+const routes = [
+  { path: "/user/*", children: <UserPage />, element: <PrivateRoute /> },
+  { path: "/", children: <HomePage />, element: <PublicRoute restricted={false} /> }
+]
+
 function DashbordRoutes(props: Props) {
 
-  const { path } = useRouteMatch();
 
   return (
-    <Switch>
-      <PrivateRoute path={`/user`} component={UserPage} />
-      <PublicRoute exact restricted={false} path={`${path}`} component={HomePage} />
-    </Switch>
+    <Routes>
+      <Route
+        path={`/user/*`}
+        element={
+          <PrivateRoute>
+            <UserPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path={`/*`}
+        element={
+          <PublicRoute restricted={false}>
+            <HomePage />
+          </PublicRoute>
+        }
+      />
+    </Routes>
   );
 
 }

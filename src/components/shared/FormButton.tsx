@@ -4,8 +4,9 @@ import { createStyles, makeStyles, styled } from '@mui/styles';
 import * as React from 'react';
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import GoogleIcon from '@mui/icons-material/Google';
+import { LoadingButton, LoadingButtonProps } from '@mui/lab';
 
-const FormButton = styled(Button)<ButtonProps>(({ theme: Theme }) => ({
+const FormButton = styled(LoadingButton)<LoadingButtonProps>(({ theme: Theme }) => ({
   color: 'white',
   marginTop: '1rem !important',
   marginBottom: '1rem !important',
@@ -16,32 +17,27 @@ const FormButton = styled(Button)<ButtonProps>(({ theme: Theme }) => ({
 
 
 
-interface SocialButtonProps {
-  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined,
-}
+export const ActionButton = (props: LoadingButtonProps) => {
 
-export const ActionButton = (props: ButtonProps) => {
 
 
   return (
     <FormButton
       variant="contained"
       fullWidth
-      onClick={props.onClick}
-      style={props.style}
-      type={props.type}
+      {...props}
     >
       {props.children}
     </FormButton>
   )
 }
 
-export const GoogleButton = (props: SocialButtonProps) => {
+export const GoogleButton = (props: LoadingButtonProps) => {
   return (
     <ActionButton
       startIcon={<GoogleIcon style={{ fontSize: "1.5rem" }} />}
       style={{ backgroundColor: '#4285f4' }}
-      onClick={props.onClick}
+      {...props}
     >
       Continue With Google
     </ActionButton>
@@ -49,12 +45,12 @@ export const GoogleButton = (props: SocialButtonProps) => {
 }
 
 
-export const FacebookButton = (props: SocialButtonProps) => {
+export const FacebookButton = (props: LoadingButtonProps) => {
   return (
     <ActionButton
       startIcon={<FacebookRoundedIcon style={{ fontSize: "1.5rem" }} />}
       style={{ backgroundColor: '#3b5998' }}
-      onClick={props.onClick}
+      {...props}
 
     >
       Continue With Facebook

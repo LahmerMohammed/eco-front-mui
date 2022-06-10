@@ -81,7 +81,7 @@ export function UserWhishlist(props: Props) {
       {
         productSample.map((product, index) => {
           return (
-            <Grid item xs={12} sm={6} md={4} >
+            <Grid key={index} item xs={12} sm={6} md={4} >
               <ProductCard {...product} />
             </Grid>
           )

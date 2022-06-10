@@ -4,9 +4,9 @@
 import { Box, Button, Dialog, DialogContent, DialogTitle, Divider, Link, Theme, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import * as React from 'react';
-import { Input } from '../components/form/Input'
-import { InputPassword } from '../components/form/InputPassword'
-import { ActionButton, FacebookButton, GoogleButton } from '../components/form/FormButton';
+import { Input } from '../components/shared/Input'
+import { InputPassword } from '../components/shared/InputPassword'
+import { ActionButton, FacebookButton, GoogleButton } from '../components/shared/FormButton';
 
 interface Props {
   open: boolean,
@@ -40,7 +40,7 @@ export function MRegister(props: Props) {
         <Typography variant="h4">Welcome to Ecommerce</Typography>
         <Typography style={{ paddingTop: '1rem', color: 'gray' }}>Login with email & password</Typography>
       </DialogTitle>
-      <DialogContent >
+      <DialogContent style={{ overflowY: 'hidden' }}>
 
         <Box component="form" sx={{ mt: '1rem' }}>
 
@@ -50,7 +50,7 @@ export function MRegister(props: Props) {
             placeholder="example@gmail.com"
             label="Email or Phone Number"
           />
-          <InputPassword />
+          <InputPassword label="Password" />
           <ActionButton
             style={{ backgroundColor: '#d23f57' }}
 

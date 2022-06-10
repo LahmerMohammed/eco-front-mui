@@ -1,7 +1,11 @@
 // prettier-ignore
-import { Grid, IconButton, Link, MenuItem, Select, Stack, Theme, Paper } from '@mui/material';
+import {
+  Grid,
+  IconButton, Link, MenuItem,
+  Select, Stack, Theme, Paper
+} from '@mui/material';
 import { makeStyles, createStyles } from '@mui/styles';
-import { CSSProperties } from '@mui/system';
+import { CSSProperties } from '@mui/material/styles/createTypography';
 import * as React from 'react';
 
 interface Props {
@@ -23,7 +27,7 @@ export function NavBar(props: Props) {
       <Grid style={{ width: '80%' }} container className={classes.container}>
         <Grid item xs={2} style={{ textAlign: 'end' }}>
           <Select defaultValue={'Categories'} onChange={onChange}>
-            {categories.map((item) => <MenuItem value={item}>{item}</MenuItem>)}
+            {categories.map((item, index) => <MenuItem key={index} value={item}>{item}</MenuItem>)}
           </Select>
         </Grid>
         <Grid container alignItems="center" justifyContent="flex-end" xs={5}>
