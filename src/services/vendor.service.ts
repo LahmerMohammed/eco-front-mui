@@ -18,13 +18,21 @@ class VendorService
     let formData = new FormData();
     productDTO.images.forEach(img => formData.append('images' , img))
 
-    formData.append('products','createProductDto' , JSON.stringify(productDTO));
-    return api.post('posts' , formData , {
-      headers: {
-        'accept': 'application/json',
-        'Content-Type': 'multipart/form-data',
-      }
-    } );
+    formData.append('body' , JSON.stringify(productDTO));
+
+    try
+    {
+      return await api.post('products' , formData , {
+        headers: {
+          'accept': 'application/json',
+          'Content-Type': 'multipart/form-data',
+        }
+      } );
+
+    }catch(error: any)
+    {
+      return error.response.data;
+    }
   }
 
 }
