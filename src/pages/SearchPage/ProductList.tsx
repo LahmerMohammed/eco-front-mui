@@ -54,10 +54,28 @@ const products = [
     oldPrice: 250,
     discount: 25,
   },
+  {
+    imgPath: 'https://www.pngmart.com/files/15/Picsart-Eye-Glass-PNG-Photo.png',
+    name: 'Police Gray Eyeglasses',
+    rating: 5,
+    oldPrice: 250,
+    discount: 25,
+  },
+  {
+    imgPath: 'https://www.pngmart.com/files/15/Picsart-Eye-Glass-PNG-Photo.png',
+    name: 'Police Gray Eyeglasses',
+    rating: 5,
+    oldPrice: 250,
+    discount: 25,
+  },
 
 ]
 
-function ProductList(props: GridProps) {
+interface Props {
+  loading: Boolean;
+  productList: Array<any>;
+}
+function ProductList(props: Props) {
 
   const classes = useStyles();
 
@@ -66,7 +84,7 @@ function ProductList(props: GridProps) {
       {
         products.map((product, index) => {
           return (
-            <Grid key={index} item xs={12} md={5} lg={3.5}>
+            <Grid key={index} item xs={12} md={5.7} lg={3.7}>
               <ProductCard {...product} />
             </Grid>
           )
@@ -82,7 +100,6 @@ export default ProductList;
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     rowGap: '2rem',
-    paddingLeft: '1rem',
     gap: '2rem'
   },
 

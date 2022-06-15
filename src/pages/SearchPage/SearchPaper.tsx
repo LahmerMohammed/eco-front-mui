@@ -5,7 +5,7 @@ import ViewComfyIcon from '@mui/icons-material/ViewComfy';
 import ViewAgendaSharpIcon from '@mui/icons-material/ViewAgendaSharp';
 import { SORT_OPTIONS, VIEW_OPTIONS } from './index'
 
-
+import EastIcon from '@mui/icons-material/East';
 // TODO : add padding to the paper
 
 interface Props {
@@ -15,6 +15,8 @@ interface Props {
   handleViewChanged: (view: VIEW_OPTIONS) => void;
   nb_results?: number;
   search?: string
+
+  handleOpenDrawer: () => void;
 }
 
 function SearchPaper(props: Props) {
@@ -66,6 +68,7 @@ function SearchPaper(props: Props) {
                   id="sort-select"
                   value={props.sortBy}
                   onChange={props.handleSortBy}
+                  size="small"
                 >
                   {
                     Object.values(SORT_OPTIONS).map((key, index) => {
@@ -88,6 +91,11 @@ function SearchPaper(props: Props) {
             <Grid item lg={2}>
               <IconButton onClick={handleColViewClick} >
                 <ViewAgendaSharpIcon fontSize="medium" color={colViewSelected ? "error" : undefined} />
+              </IconButton>
+            </Grid>
+            <Grid item lg={2} sx={{ display: { md: 'none' } }}>
+              <IconButton onClick={props.handleOpenDrawer} >
+                <EastIcon fontSize="medium" />
               </IconButton>
             </Grid>
           </Grid>

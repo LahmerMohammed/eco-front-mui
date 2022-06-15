@@ -141,12 +141,12 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   paper: {
     borderRadius: '10px',
     padding: "1.5rem 2rem",
+    width: '100%'
 
   },
   container: {
     flexDirection: "column",
     rowGap: "2rem",
-    paddingRight: '1rem'
   },
   title: {
     fontWeight: '700',

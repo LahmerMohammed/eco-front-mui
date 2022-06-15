@@ -1,7 +1,7 @@
 
 
 
-import { Grid, IconButton, Paper, Rating, Theme, Typography } from '@mui/material';
+import { Grid, IconButton, Link, Paper, Rating, Theme, Tooltip, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import React from 'react'
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
@@ -21,8 +21,10 @@ function ProductCard(props: Props) {
   return (
     <Paper className={classes.paper} elevation={3}>
       <Grid container className={classes.container}>
-        <Grid container item style={{ height: '300px' }} justifyContent='center' alignItems='center'>
-          <img className={classes.img} src={props.imgPath} />
+        <Grid container item style={{ height: '200px' }} justifyContent='center' alignItems='center'>
+          <Link href="#">
+            <img className={classes.img} src={props.imgPath} />
+          </Link>
         </Grid>
         <Grid container item >
           <Grid item xs={8} container className={classes.info}>
@@ -41,9 +43,11 @@ function ProductCard(props: Props) {
             </Grid>
           </Grid>
           <Grid item xs={3} container className={classes.addContainer}>
-            <IconButton>
-              <AddBoxOutlinedIcon htmlColor='#D23F57' fontSize='large' />
-            </IconButton>
+            <Tooltip title='Add to favotite' >
+              <IconButton>
+                <AddBoxOutlinedIcon htmlColor='#D23F57' fontSize='large' />
+              </IconButton>
+            </Tooltip>
           </Grid>
         </Grid>
       </Grid>
@@ -87,6 +91,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
     marginLeft: '0.1rem ',
-    marginBottom: '0.5rem'
+    marginBottom: '0.5rem',
+
   }
 }));
