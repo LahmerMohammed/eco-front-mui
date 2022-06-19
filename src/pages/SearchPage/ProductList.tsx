@@ -82,7 +82,7 @@ function ProductList(props: Props) {
   return (
     <Grid container className={classes.root}>
       {
-        products.map((product, index) => {
+        props.productList.map((product, index) => {
           return (
             <Grid key={index} item xs={12} md={5.7} lg={3.7}>
               <ProductCard {...product} />
