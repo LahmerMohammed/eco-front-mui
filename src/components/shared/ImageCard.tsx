@@ -6,7 +6,8 @@ import {
   Grid,
   IconButton
 } from "@mui/material";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+import DoNotDisturbOnIcon from '@mui/icons-material/DoNotDisturbOn';
+
 
 interface ImageCardProps {
   onDelete: (src: string) => void,
@@ -37,7 +38,7 @@ function ImageCard(props: ImageCardProps) {
         }}
         onClick={() => props.onDelete(props.name)}
       >
-        <RemoveCircleOutlineIcon color="error" />
+        <DoNotDisturbOnIcon color="error" />
       </IconButton>
       <CardActionArea
         sx={{ zIndex: 1000 }}
