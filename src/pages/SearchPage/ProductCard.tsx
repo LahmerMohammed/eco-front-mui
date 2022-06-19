@@ -6,26 +6,27 @@ import { createStyles, makeStyles } from '@mui/styles';
 import React from 'react'
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 interface Props {
-  imgPath: string,
+  image: any,
   name: string,
   rating: number,
-  oldPrice: number,
-  discount?: number,
+  sale_price: number,
+  regular_price: number,
 }
+
 
 function ProductCard(props: Props) {
 
   const classes = useStyles();
 
-
+  console.log(props.image);
   return (
     <Paper className={classes.paper} elevation={3}>
       <Grid container className={classes.container}>
-        <Grid container item style={{ height: '200px' }} justifyContent='center' alignItems='center'>
-          <Link href="#">
-            <img className={classes.img} src={props.imgPath} />
-          </Link>
-        </Grid>
+        <Link href="#" className={classes.imgContainer}>
+          <Grid container item className={classes.imgWrapper} >
+            <img className={classes.img} src={props.image} />
+          </Grid>
+        </Link>
         <Grid container item >
           <Grid item xs={8} container className={classes.info}>
             <Grid item>
@@ -38,7 +39,7 @@ function ProductCard(props: Props) {
             </Grid>
             <Grid item>
               <Typography className={classes.price}>
-                {`${props.oldPrice}.00$`}
+                {`${props.sale_price}.00$`}
               </Typography>
             </Grid>
           </Grid>
@@ -62,14 +63,17 @@ export default ProductCard;
 const useStyles = makeStyles((theme: Theme) => createStyles({
   paper: {
     borderRadius: '15px',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    height: '100%'
   },
   container: {
     flexDirection: 'column',
+    height: '100%',
+    justifyContent: 'space-between'
   },
   img: {
     maxWidth: '100%',
-    maxHeight: '100%',
+    maxHeight: '70%',
   },
   name: {
     color: '#373F50',
@@ -93,5 +97,16 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     marginLeft: '0.1rem ',
     marginBottom: '0.5rem',
 
+  },
+  imgContainer: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  imgWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '200px'
   }
 }));
