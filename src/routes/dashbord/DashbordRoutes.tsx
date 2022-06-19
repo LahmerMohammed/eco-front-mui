@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { LoginPage } from '../../pages';
 import { ConfirmEmailPage } from '../../pages/ConfirmEmailPage';
 import { HomePage } from '../../pages/HomePage';
+import SearchPage from '../../pages/SearchPage/SearchPage';
 import { SignupPage } from '../../pages/SignupPage';
 import { UserPage } from '../../pages/UserPage';
 import PrivateRoute from '../PrivateRoute';
@@ -15,8 +16,8 @@ interface Props {
 }
 
 const routes = [
-  { path: "/user/*", children: <UserPage />, element: <PrivateRoute /> },
-  { path: "/", children: <HomePage />, element: <PublicRoute restricted={false} /> }
+  /* { path: "/user/*", children: <UserPage />, element: <PrivateRoute /> },
+  { path: "/", children: <HomePage />, element: <PublicRoute restricted={false} /> } */
 ]
 
 function DashbordRoutes(props: Props) {
@@ -33,10 +34,18 @@ function DashbordRoutes(props: Props) {
         }
       />
       <Route
+        path={`/search`}
+        element={
+          <PublicRoute restricted={false}>
+            <SearchPage />
+          </PublicRoute>
+        }
+      />
+      <Route
         path={`/*`}
         element={
           <PublicRoute restricted={false}>
-            <HomePage />
+            {/* <HomePage /> */}
           </PublicRoute>
         }
       />
