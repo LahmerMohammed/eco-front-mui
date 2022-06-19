@@ -86,7 +86,7 @@ export function Header(props: Props) {
         <Grid alignItems='center' xs={12} md={8} xl={6} container className={classes.search}>
           <SearchBar />
         </Grid>
-        <Grid sx={{ display: { xs: 'none', md: 'flex' } }} md={2} xl={3} container className={classes.accountCart}>
+        <Grid sx={{ display: { xs: 'none', md: 'flex' } }} md={2} xl={3} container item className={classes.accountCart}>
           <Grid sx={{ mr: { lg: '2rem' } }} item md={6} lg={3} xl={1} className={classes.item}>
             <IconButton size="medium"
               onClick={handleUserClick}
