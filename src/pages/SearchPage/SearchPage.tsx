@@ -8,6 +8,7 @@ import ProductList from './ProductList';
 import SearchParameters from './SearchParameters';
 
 import WestIcon from '@mui/icons-material/West';
+import { vendorService } from '../../services/vendor.service';
 
 
 // TODO : change default no_pages to 0
@@ -18,12 +19,30 @@ function SearchPage() {
 
   const [productsPerPage, setProductsPerPage] = React.useState(9);
   const [currPage, setCurrPage] = React.useState(1);
-  const [numberOfPages, setNumberOfPages] = React.useState(10);
+  const [numberOfPages, setNumberOfPages] = React.useState(5);
   const [loading, setLoading] = React.useState(false);
-  const [productList, setProductList] = React.useState([]);
+  const [productList, setProductList] = React.useState<Array<{image:any,name:string,regular_price:number,sale_price:string,rating:number}>>([]);
 
   React.useEffect(() => {
-    // fetch data in the curr page
+    const queryParams = {page: currPage,limit: productsPerPage,offset: 0};
+
+    const getProucts = async () => {
+      const data = await vendorService.getProducts(queryParams);
+      //TODO: Check for erros
+
+      if( data !== undefined)
+      {
+        setProductList(data.data);
+        setNumberOfPages(data.pageCount); 
+
+        console.log(data.data);
+      }
+      
+      
+    }
+
+    getProucts();
+
   }, [currPage]);
 
   const handlePageChange = (evt: React.ChangeEvent<unknown>, page: number) => {
