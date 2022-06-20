@@ -57,9 +57,9 @@ function SearchPaper(props: Props) {
             <Typography fontSize="1rem">48 results found</Typography>
           </Grid>
         </Grid>
-        <Grid item container xs={12} sm={12} md={7} xl={5} justifyContent="flex-start" gap="1rem">
+        <Grid item container xs={12}  md={7} xl={5} justifyContent="flex-start" gap="1rem">
           <Grid item container className={classes.sortElement} xs={12} md={6} gap=".5rem" alignItems="center">
-            <Grid item xs={5} sm={2} md={5} lg={3} xl={3}>
+            <Grid item xs={5} sm={2} md={5} lg={4}>
               <Typography fontSize="1.1rem">Sort by :</Typography>
             </Grid>
             <Grid item xs={6} sm={5} md={6} lg={6} xl={7}>
@@ -82,7 +82,7 @@ function SearchPaper(props: Props) {
             </Grid>
           </Grid>
           <Grid item container justifyContent="flex-start" alignItems="center" xs={12} md={5}>
-            <Grid item lg={4} > <Typography fontSize="1.1rem">View by :</Typography></Grid>
+            <Grid item lg={5} > <Typography fontSize="1.1rem">View by :</Typography></Grid>
             <Grid item lg={2} >
               <IconButton onClick={handleRowViewClick}>
                 <ViewComfyIcon fontSize="medium" color={rowViewSelected ? "error" : undefined} />
