@@ -79,11 +79,11 @@ export function Header(props: Props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Grid justifyContent='space-between' container className={classes.container}>
+      <Grid sx={{justifyContent:{ xs:'center'}}} justifyContent='space-between' container className={classes.container}>
         <Grid sx={{ display: { xs: 'none', md: 'flex' } }} md={2} xl={3} item className={classes.logo}>
           <Typography variant='h4'>LoGo</Typography>
         </Grid>
-        <Grid alignItems='center' xs={12} md={8} xl={6} container className={classes.search}>
+        <Grid xs={10} md={8} xl={6} container className={classes.search}>
           <SearchBar />
         </Grid>
         <Grid sx={{ display: { xs: 'none', md: 'flex' } }} md={2} xl={3} container item className={classes.accountCart}>
@@ -152,6 +152,8 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     alignItems: 'center'
   },
   search: {
+    alignItems:'center',
+    justifyContent:'center'
   },
   accountCart: {
     justifyContent: 'space-evenly',
