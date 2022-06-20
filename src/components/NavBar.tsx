@@ -25,16 +25,16 @@ export function NavBar(props: Props) {
   return (
     <div className={classes.root}>
       <Grid style={{ width: '80%' }} container className={classes.container}>
-        <Grid item xs={2} style={{ textAlign: 'end' }}>
-          <Select defaultValue={'Categories'} onChange={onChange}>
+        <Grid item xs={4} md={2} style={{ textAlign: 'end' }}>
+          <Select defaultValue={'Categories'} onChange={onChange} size="small">
             {categories.map((item, index) => <MenuItem key={index} value={item}>{item}</MenuItem>)}
           </Select>
         </Grid>
-        <Grid container alignItems="center" justifyContent="flex-end" xs={5}>
+        <Grid container alignItems="center" justifyContent="flex-end" xs={7} md={5}>
           <Stack direction="row" spacing={3}>
             <Link className={classes.link}  >Home</Link>
-            <Link className={classes.link} >Contact</Link>
-            <Link className={classes.link}>About</Link>
+{/*             <Link className={classes.link} >Contact</Link>
+ */}            <Link className={classes.link}>About</Link>
           </Stack>
         </Grid>
       </Grid>
