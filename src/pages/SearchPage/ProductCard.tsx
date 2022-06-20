@@ -18,7 +18,6 @@ function ProductCard(props: Props) {
 
   const classes = useStyles();
 
-  console.log(props.image);
   return (
     <Paper className={classes.paper} elevation={3}>
       <Grid container className={classes.container}>
