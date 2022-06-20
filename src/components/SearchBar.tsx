@@ -1,7 +1,7 @@
 
 
 // prettier-ignore
-import { Box, Button, Grid, Input, Menu, MenuItem, Select, TextField, TextFieldProps, Theme } from '@mui/material';
+import { Box, Button, Grid, Input, InputBase, InputBaseProps, Menu, MenuItem, Select, TextField, TextFieldProps, Theme } from '@mui/material';
 import { makeStyles, createStyles, styled } from '@mui/styles';
 import * as React from 'react';
 import Search from '@mui/icons-material/Search';
@@ -10,11 +10,8 @@ interface Props {
 
 }
 
-const SearchField = styled(TextField)<TextFieldProps>(() => ({
+const SearchField = styled(InputBase)<InputBaseProps>(() => ({
   height: 'inherit',
-  '& .css-1o2jng6-MuiOutlinedInput-notchedOutline ': {
-    border: 'none !important'
-  },
 }));
 
 
@@ -27,11 +24,12 @@ export function SearchBar(props: Props) {
 
   return (
     <div className={classes.container}>
-      <Search style={{ marginLeft: '.5rem' }} fontSize="large" />
+      <Search style={{ marginLeft: '.5rem' }} fontSize="medium" />
       <SearchField placeholder='Search for ...' fullWidth />
       <Select
         defaultValue={categories[0]}
         className={classes.select}
+        size="small"
       >
         {categories.map((category, index) => <MenuItem key={index} value={category} >{category}</MenuItem>)}
       </Select>
@@ -46,13 +44,13 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     display: 'flex',
     width: 'inherit',
     alignItems: 'center',
-    border: '1px solid rgba(151, 142, 142, 0.5)',
+    border: '2px solid rgba(151, 142, 142, 0.5)',
     borderRadius: '2rem',
     '&:hover': {
       borderColor: 'black'
     },
     '&:focus-within': {
-      border: '3px solid #d23f57'
+      border: '1px solid #d23f57'
     },
 
   },
@@ -68,8 +66,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
       left: '0px',
     },
     backgroundColor: '#f6f9fc',
-    minWidth: 150,
-    width: 200,
+    width: 145,
     textAlign: 'center',
     '&.MuiOutlinedInput-root ': {
       borderRadius: '2rem',
@@ -80,5 +77,4 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
       borderColor: 'rgba(210, 199, 199, 0.5)'
     }
   }
-
 }));
