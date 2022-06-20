@@ -27,20 +27,21 @@ function SearchPage() {
     const queryParams = {page: currPage,limit: productsPerPage,offset: 0};
 
     const getProucts = async () => {
+
+      setLoading(true);
       const data = await vendorService.getProducts(queryParams);
+      setLoading(false);
+      
       //TODO: Check for erros
 
       if( data !== undefined)
       {
         setProductList(data.data);
         setNumberOfPages(data.pageCount); 
-
-        console.log(data.data);
       }
       
       
     }
-
     getProucts();
 
   }, [currPage]);
@@ -54,7 +55,6 @@ function SearchPage() {
     setView(view);
   }
   React.useEffect(() => {
-    console.log("view changed to ", view);
   }, [view]);
 
 
@@ -110,6 +110,7 @@ function SearchPage() {
                 page={currPage}
                 className={classes.paginationColor}
                 size="large"
+                sx={{display: loading ? 'none' : 'default'}}
                 onChange={handlePageChange}
               />
             </Grid>
