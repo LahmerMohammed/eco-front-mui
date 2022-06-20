@@ -1,91 +1,35 @@
-import { Grid, GridProps, Theme } from '@mui/material';
+import { Grid, GridProps, Skeleton, Theme } from '@mui/material';
 import { makeStyles, createStyles } from '@mui/styles';
 import React from 'react'
 import ProductCard from './ProductCard';
 
 
-const products = [
-  {
-    imgPath: 'https://www.pngmart.com/files/15/Picsart-Eye-Glass-PNG-Photo.png',
-    name: 'Police Gray Eyeglasses',
-    rating: 5,
-    oldPrice: 250,
-    discount: 25,
-  },
-  {
-    imgPath: 'https://www.pngmart.com/files/15/Picsart-Eye-Glass-PNG-Photo.png',
-    name: 'Police Gray Eyeglasses',
-    rating: 5,
-    oldPrice: 250,
-    discount: 25,
-  },
-  {
-    imgPath: 'https://www.pngmart.com/files/15/Picsart-Eye-Glass-PNG-Photo.png',
-    name: 'Police Gray Eyeglasses',
-    rating: 5,
-    oldPrice: 250,
-    discount: 25,
-  },
-  {
-    imgPath: 'https://www.pngmart.com/files/15/Picsart-Eye-Glass-PNG-Photo.png',
-    name: 'Police Gray Eyeglasses',
-    rating: 5,
-    oldPrice: 250,
-    discount: 25,
-  },
-  {
-    imgPath: 'https://www.pngmart.com/files/15/Picsart-Eye-Glass-PNG-Photo.png',
-    name: 'Police Gray Eyeglasses',
-    rating: 5,
-    oldPrice: 250,
-    discount: 25,
-  },
-  {
-    imgPath: 'https://www.pngmart.com/files/15/Picsart-Eye-Glass-PNG-Photo.png',
-    name: 'Police Gray Eyeglasses',
-    rating: 5,
-    oldPrice: 250,
-    discount: 25,
-  },
-  {
-    imgPath: 'https://www.pngmart.com/files/15/Picsart-Eye-Glass-PNG-Photo.png',
-    name: 'Police Gray Eyeglasses',
-    rating: 5,
-    oldPrice: 250,
-    discount: 25,
-  },
-  {
-    imgPath: 'https://www.pngmart.com/files/15/Picsart-Eye-Glass-PNG-Photo.png',
-    name: 'Police Gray Eyeglasses',
-    rating: 5,
-    oldPrice: 250,
-    discount: 25,
-  },
-  {
-    imgPath: 'https://www.pngmart.com/files/15/Picsart-Eye-Glass-PNG-Photo.png',
-    name: 'Police Gray Eyeglasses',
-    rating: 5,
-    oldPrice: 250,
-    discount: 25,
-  },
-
-]
 
 interface Props {
   loading: Boolean;
   productList: Array<any>;
 }
+
+
 function ProductList(props: Props) {
 
   const classes = useStyles();
 
+  const { productList , loading} = props;
+
   return (
     <Grid container className={classes.root}>
       {
-        props.productList.map((product, index) => {
+        !loading ? productList.map((product, index) => {
           return (
             <Grid key={index} item xs={12} md={5.7} lg={3.7}>
               <ProductCard {...product} />
+            </Grid>
+          )
+        }) : [1,2,3,4,5,6,7,8,9].map((skeleton,index) => {
+          return (
+            <Grid key={index} item xs={12} md={5.7} lg={3.7}>
+              <ProductCardSkeleton />
             </Grid>
           )
         })
@@ -104,3 +48,16 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 
 }));
+
+
+
+function ProductCardSkeleton()
+{
+  return (
+    <>
+      <Skeleton variant='rectangular' height={200}/>
+      <Skeleton variant='text' height={35}/>
+      <Skeleton variant='text' height={35}/>
+    </>
+  )
+}
