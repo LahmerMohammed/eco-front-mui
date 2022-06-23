@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { LoginPage } from '../../pages';
 import { ConfirmEmailPage } from '../../pages/ConfirmEmailPage';
 import { HomePage } from '../../pages/HomePage';
+import ProductPage from '../../pages/ProductPage/ProductPage';
 import SearchPage from '../../pages/SearchPage/SearchPage';
 import { SignupPage } from '../../pages/SignupPage';
 import { UserPage } from '../../pages/UserPage';
@@ -38,6 +39,14 @@ function DashbordRoutes(props: Props) {
         element={
           <PublicRoute restricted={false}>
             <SearchPage />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path={`/products/:id`}
+        element={
+          <PublicRoute restricted={false}>
+            <ProductPage />
           </PublicRoute>
         }
       />
